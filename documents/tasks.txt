@@ -1,0 +1,41 @@
+Как устанавливать и разрабатывать
+1. composer create-project --prefer-dist yiisoft/yii2-app-advanced yii-application
+2. ./init Переключение режимов разработки, не добавлять вручную а переключаться только так
+
+Базы данных
+
+sporthock_dev
+sporthock_prod
+sporthock_test
+
+Режимы
+
+Production
+Development
+Testing
+
+Приложения
+
+common - общие файлы для всех приложений
+backend - backend app
+frontend - frontend app
+console - console app
+environments - environments config
+
+------------
+Миграции в окружениях
+
+prod - ./yii migrate
+dev  - ./yii migrate
+test  - ./yii_test migrate
+
+------------
+git
+master - долгоживущая ветка где лежит стабильный код Не нужно мержить в мастер то что не готово и не протестированно
+        При релизе отмечать тегами только в master
+        git tag -a v1.0 -m "Version 1.0"
+    	git push --follow-tags
+develop - ветвь для разработки(все сливать сюда)
+feature-1234 - новая фича где 1234 - номер задачи вливать в develop Когда ветка влита и больше не нужна ее нужно удалить.
+
+
