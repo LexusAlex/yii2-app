@@ -6,9 +6,9 @@ record - Записи - Статья,Пост,Коментарий по кате
     user_id -> User.id - Имя пользователя кто создал запись (int) not null I FK
     slug - Заголовок записи для url (str) not null
     title - Заголовок (str) not null
-    preview - Превью в html(markdown) (text) not null
-    content - Контент в html(markdown) (text) not null
-    status - Статус записи (int) default 10 - active 0 - inactive 20 - deleted not null
+    preview - Превью в html(markdown) (mediumtext) not null
+    content - Контент в html(markdown) (mediumtext) not null
+    status - Статус записи (int) 10 - active 0(default) - inactive 20 - deleted not null
     created_at - Время создания (timestamp) not null
     updated_at - Время обновления (timestamp) not null
 
@@ -21,7 +21,7 @@ tag - Теги для записей
     id - Номер тега (pk)
     name - Название тега
     description - Описание тега
-    parent_id - Родительский тег Null
+    parent_id ->tag.id Родительский тег Null
     created_at Время создания (timestamp) not null
     updated_at Время обновления (timestamp) not null
 

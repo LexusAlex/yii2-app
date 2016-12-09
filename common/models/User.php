@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use backend\models\Record;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -20,6 +21,8 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ *
+ * @property Record[] $records
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -55,7 +58,13 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
     }
-
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRecords()
+    {
+        return $this->hasMany(Record::className(), ['user_id' => 'id'])->inverseOf('user');
+    }
     /**
      * @inheritdoc
      */
