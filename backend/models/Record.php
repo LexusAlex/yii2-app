@@ -8,6 +8,8 @@ use yii\behaviors\SluggableBehavior;
 use common\models\User;
 use Yii;
 use yii\db\Expression;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "record".
@@ -20,8 +22,8 @@ use yii\db\Expression;
  * @property string $preview
  * @property string $content
  * @property integer $status
- * @property string $created_at
- * @property string $updated_at
+ * @property integer $created_at
+ * @property integer $updated_at
  *
  * @property User $user
  * @property Category $category
@@ -29,6 +31,14 @@ use yii\db\Expression;
  */
 class Record extends \yii\db\ActiveRecord
 {
+    /** Inactive status */
+    const STATUS_INACTIVE = 0;
+
+    /** Active status */
+    const STATUS_ACTIVE = 10;
+
+    /** Deleted status */
+    const STATUS_DELETED = 20;
     /**
      * @inheritdoc
      */
@@ -45,7 +55,7 @@ class Record extends \yii\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::className(),
-                'value' => new Expression('NOW()'),
+                //'value' => function() { return date('U');},
             ],
             [
                 'class' => BlameableBehavior::className(),
@@ -71,6 +81,8 @@ class Record extends \yii\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'slug'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            ['status', 'default', 'value' => self::STATUS_INACTIVE],
+            ['status', 'in', 'range' => array_keys(self::getStatuses())],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
@@ -127,5 +139,36 @@ class Record extends \yii\db\ActiveRecord
     public static function find()
     {
         return new RecordQuery(get_called_class());
+    }
+
+    /**
+     * @return string label for current status статус текущей записи
+     */
+    public function getStatusLabel()
+    {
+        return ArrayHelper::getValue(static::getStatuses(), $this->status);
+    }
+
+    /**
+     * @return array status labels indexed by status values
+     */
+    public static function getStatuses()
+    {
+        return [
+            self::STATUS_INACTIVE => "<span class='label label-default'>".Yii::t('app', 'Inactive')."</span>",
+            self::STATUS_ACTIVE => "<span class='label label-success'>".Yii::t('app', 'Active')."</span>",
+            self::STATUS_DELETED => "<span class='label label-danger'>".Yii::t('app', 'Deleted')."</span>",
+        ];
+    }
+    /**
+     * @return array status labels indexed by status values text
+     */
+    public static function getStatusesText()
+    {
+        return [
+            self::STATUS_INACTIVE => Yii::t('app', 'Inactive'),
+            self::STATUS_ACTIVE => Yii::t('app', 'Active'),
+            self::STATUS_DELETED => Yii::t('app', 'Deleted'),
+        ];
     }
 }

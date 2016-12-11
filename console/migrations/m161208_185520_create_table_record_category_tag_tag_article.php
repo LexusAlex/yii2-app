@@ -16,8 +16,8 @@ class m161208_185520_create_table_record_category_tag_tag_article extends Migrat
             'preview' => 'MEDIUMTEXT NOT NULL',
             'content' => 'MEDIUMTEXT NOT NULL',
             'status' => $this->smallInteger()->notNull()->defaultValue(0),
-            'created_at' => $this->timestamp()->notNull(),
-            'updated_at' => $this->timestamp()->notNull()
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer()->notNull()
         ]);
         // category
         $this->createTable('{{%category}}', [
@@ -31,8 +31,8 @@ class m161208_185520_create_table_record_category_tag_tag_article extends Migrat
             'name' => $this->string(100)->notNull()->unique(),
             'description' => $this->string(),
             'parent_id' => $this->integer(), // tag
-            'created_at' => $this->timestamp()->notNull(),
-            'updated_at' => $this->timestamp()->notNull(),
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer()->notNull(),
         ]);
         // tag_article
         $this->createTable(
