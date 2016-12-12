@@ -23,6 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a(Yii::t('app', 'Create Record'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Records'), ['index'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= DetailView::widget([
@@ -41,6 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'slug',
             'preview:html',
             'content:html',
+            [
+                'attribute' => 'tagsArray',
+                'value'=>implode(', ', \yii\helpers\ArrayHelper::map($model->tagArticles, 'id', 'name')),
+            ],
             'status',
             [
                 'attribute' => 'created_at',

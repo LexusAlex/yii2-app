@@ -76,8 +76,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'created_at',
+                'filter'=> false,
                 //'format' => 'datetime',
-                'format' => ['datetime', 'php:d F Y G:i:s'],
+                'format' => ['datetime', 'short'],
+                //'format' => ['datetime', 'php:d F Y G:i:s'],
                 /*'filter' => \kartik\date\DatePicker::widget([
                     'model' => $searchModel,
                     'attribute' => 'created_at',
@@ -104,9 +106,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'updated_at',
-                'format' => ['datetime', 'php:d F Y G:i:s'],
+                //'format' => ['datetime', 'php:d F Y G:i:s'],
+                'format' => ['datetime', 'short'],
+                //'format' => 'datetime',
+                'filter'=> false,
             ],
-
+            [
+                'label' => Yii::t('app', 'Tags'),
+                'value'=>function($data){
+                    return implode(', ', \yii\helpers\ArrayHelper::map($data->tagArticles, 'id', 'name'));
+                },
+            ],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header'=> Yii::t('app', 'Action'),

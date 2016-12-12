@@ -28,6 +28,7 @@ use yii\helpers\Html;
  * @property User $user
  * @property Category $category
  * @property TagArticle[] $tagArticles
+ * @property array $tagsArray
  */
 class Record extends \yii\db\ActiveRecord
 {
@@ -81,6 +82,7 @@ class Record extends \yii\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'slug'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            [['tagsArray'], 'safe'],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => array_keys(self::getStatuses())],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -104,6 +106,7 @@ class Record extends \yii\db\ActiveRecord
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'tagsArray' => Yii::t('app', 'Tags'),
         ];
     }
 
@@ -170,5 +173,46 @@ class Record extends \yii\db\ActiveRecord
             self::STATUS_ACTIVE => Yii::t('app', 'Active'),
             self::STATUS_DELETED => Yii::t('app', 'Deleted'),
         ];
+    }
+    // Tags
+    private $_tagsArray;
+
+    public function getTagsArray()
+    {
+        if ($this->_tagsArray === null) {
+            $this->_tagsArray = $this->getTagArticles()->select('id')->column();
+        }
+        return $this->_tagsArray;
+    }
+
+    public function setTagsArray($value)
+    {
+        $this->_tagsArray = (array)$value;
+    }
+    // После сохранения модели
+    public function afterSave($insert, $changedAttributes)
+    {
+        $this->updateTags(); // обновление тегов у записей
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    private function updateTags()
+    {
+        $currentTagIds = $this->getTagArticles()->select('id')->column(); // теги которые имеются у записи
+        $newTagIds = $this->getTagsArray(); // отмеченные новые теги в форме или убранные
+        // добавляем связи
+        foreach (array_filter(array_diff($newTagIds, $currentTagIds)) as $tagId) {
+            /** @var Tag $tag */
+            if ($tag = Tag::findOne($tagId)) {
+                $this->link('tagArticles', $tag);
+            }
+        }
+        // удаляем связи
+        foreach (array_filter(array_diff($currentTagIds, $newTagIds)) as $tagId) {
+            /** @var Tag $tag */
+            if ($tag = Tag::findOne($tagId)) {
+                $this->unlink('tagArticles', $tag, true);
+            }
+        }
     }
 }

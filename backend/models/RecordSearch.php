@@ -49,7 +49,7 @@ class RecordSearch extends Record
     public function search($params)
     {
         //$query = Record::find();
-        $query = Record::find()->with(['category']);
+        $query = Record::find()->with(['category','tagArticles']);
         //$query = Record::find()->joinWith(['category','user']);
         //$query = Record::find()->joinWith(['category']);
         // add conditions that should always apply here

@@ -31,6 +31,7 @@ class m161208_185520_create_table_record_category_tag_tag_article extends Migrat
             'name' => $this->string(100)->notNull()->unique(),
             'description' => $this->string(),
             'parent_id' => $this->integer(), // tag
+            'frequency' => $this->smallInteger()->notNull()->defaultValue(0),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
         ]);
@@ -40,10 +41,11 @@ class m161208_185520_create_table_record_category_tag_tag_article extends Migrat
             [
                 'record_id' => $this->integer()->notNull(), //record
                 'tag_id' => $this->integer()->notNull(), // tag
-                'PRIMARY KEY(record_id, tag_id)'
+                //'PRIMARY KEY(record_id, tag_id)'
             ]
         );
-
+        //pk tag_article
+        $this->addPrimaryKey('', '{{%tag_article}}', ['record_id', 'tag_id']);
         // index record.category_id
         $this->createIndex('I_category_id_record', '{{%record}}', 'category_id');
         // fk record.category.id

@@ -22,6 +22,7 @@ tag - Теги для записей
     name - Название тега
     description - Описание тега
     parent_id ->tag.id Родительский тег Null
+    frequency - Колличество тегов
     created_at Время создания (int) not null
     updated_at Время обновления (int) not null
 
@@ -39,3 +40,9 @@ user - Пользователи
     status - статус пользователя
     created_at - время создания (int)
     updated_at - время обновления (int)
+
+----------
+связи
+record запись
+tag тег
+tag_article связь тегов и статей

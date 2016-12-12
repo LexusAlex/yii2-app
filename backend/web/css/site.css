@@ -124,3 +124,6 @@ a.desc:after {
 .fr-wrapper ~ div{
     display: none;
 }
+#record-tagsarray > * {
+    display: block;
+}

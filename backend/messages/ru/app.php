@@ -18,10 +18,12 @@ return [
     'Create' => 'Создать',
     'Update' => 'Обновить',
     'Delete' => 'Удалить',
+    'Tags' => 'Теги',
     'Update {modelClass}: ' => 'Обновить {modelClass}:',
     'Are you sure you want to delete this item?' => 'Вы уверены, что хотите удалить этот пункт? ',
     'Select a category'=> 'Выберете категорию',
     'Select a status'=> 'Выберете статус записи',
+    'Select or Update tags'=> 'Выберете или обновите теги',
     'Title and Slug'=> 'Заголовок и slug',
     'Time of servers' => 'Время сервера',
 ];

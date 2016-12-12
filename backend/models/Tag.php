@@ -15,6 +15,7 @@ use yii\db\Expression;
  * @property integer $parent_id
  * @property string $created_at
  * @property string $updated_at
+ * @property integer $frequency
  *
  * @property Tag $parent
  * @property Tag[] $tags
@@ -35,7 +36,7 @@ class Tag extends \yii\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::className(),
-                'value' => new Expression('NOW()'),
+                //'value' => new Expression('NOW()'),
             ],
         ];
     }
@@ -46,7 +47,7 @@ class Tag extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['parent_id'], 'integer'],
+            [['parent_id','frequency'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 100],
             [['name'], 'unique'],
@@ -64,6 +65,7 @@ class Tag extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
+            'frequency' => Yii::t('app', 'Frequency'),
             'parent_id' => Yii::t('app', 'Parent ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),

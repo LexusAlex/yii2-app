@@ -63,6 +63,12 @@ use yii\widgets\ActiveForm;
         ['prompt' => Yii::t('app', 'Select a status')]
     )->hint(Yii::t('app', 'Select a status'));  ?>
 
+    <?= $form->field($model, 'tagsArray')->checkboxList(
+        \backend\models\Tag::find()->select(['name', 'id'])->indexBy('id')->column(),
+        ['class'=>'checkbox']
+    )->hint(Yii::t('app', 'Select or Update tags'));
+    ?>
+
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
