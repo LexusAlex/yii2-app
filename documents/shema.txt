@@ -9,8 +9,8 @@ record - Записи - Статья,Пост,Коментарий по кате
     preview - Превью в html(markdown) (mediumtext) not null
     content - Контент в html(markdown) (mediumtext) not null
     status - Статус записи (int) 10 - active 0(default) - inactive 20 - deleted not null
-    created_at - Время создания (timestamp) not null
-    updated_at - Время обновления (timestamp) not null
+    created_at - Время создания (int) not null
+    updated_at - Время обновления (int) not null
 
 category - Категории для записи
     id - Номер категории (pk)
@@ -22,8 +22,9 @@ tag - Теги для записей
     name - Название тега
     description - Описание тега
     parent_id ->tag.id Родительский тег Null
-    created_at Время создания (timestamp) not null
-    updated_at Время обновления (timestamp) not null
+    frequency - Колличество тегов
+    created_at Время создания (int) not null
+    updated_at Время обновления (int) not null
 
 tag_article - Связь тегов и статей
     record_id - Номер статьи (int)
@@ -39,3 +40,9 @@ user - Пользователи
     status - статус пользователя
     created_at - время создания (int)
     updated_at - время обновления (int)
+
+----------
+связи
+record запись
+tag тег
+tag_article связь тегов и статей

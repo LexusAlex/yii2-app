@@ -44,6 +44,8 @@ git checkout -b new_branch - создать и перейти в ветку
 git checkout develop
 git merge --no-ff branch-123
 git branch -d branch-123 - удаление ветки
+
+!!!Не забыть убрать права на создание файлов chmod -R 777 backend/views
 ---------------
 Задачи
 #1 - Создание миграций и основ для таблиц record category tag tag_article

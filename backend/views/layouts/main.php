@@ -36,6 +36,7 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => Yii::t('app', 'Records'), 'url' => ['/record/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
@@ -67,7 +68,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left"><?php echo Yii::t('app', 'Time of servers')?> : <?php echo date('d F Y G:i:s'); ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
