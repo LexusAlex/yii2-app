@@ -5,6 +5,7 @@ namespace backend\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "tag".
@@ -104,5 +105,18 @@ class Tag extends \yii\db\ActiveRecord
     public static function find()
     {
         return new TagQuery(get_called_class());
+    }
+
+    public static function getParentsList()
+    {
+        // Выбираем только те категории, у которых есть дочерние категории
+        $parents = Tag::find()
+            ->select(['t.id', 't.name'])
+            ->join('JOIN', 'tag t', 'tag.parent_id = t.id')
+            ->distinct(true)
+            ->indexBy('id')
+            ->all();
+
+        return ArrayHelper::map($parents, 'id', 'name');
     }
 }
