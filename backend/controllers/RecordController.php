@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use FroalaEditor\Image;
 use Yii;
 use backend\models\Record;
 use backend\models\RecordSearch;
@@ -9,11 +10,14 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+require (__DIR__ . '/../../vendor/froala/wysiwyg-editor-php-sdk/lib/FroalaEditor.php');
+
 /**
  * RecordController implements the CRUD actions for Record model.
  */
 class RecordController extends Controller
 {
+    public $enableCsrfValidation = false;
     /**
      * @inheritdoc
      */
@@ -122,5 +126,44 @@ class RecordController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * Загрузка изображения на сервер
+     * @return \StdClass
+     */
+    public function actionUploadImage()
+    {
+
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+       // $response = Image::upload(\Yii::getAlias('@backend/web/upload/'));
+        $response = Image::upload('/upload/');
+        return $response;
+        //$uploadfile = \Yii::getAlias('@backend/web/upload/').$_FILES['file']['name'];
+        //move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile);
+        //$items = Record::find()->all();
+        //return $items;
+    }
+
+    /**
+     * Показ всех загруженных изображений в редакторе
+     * @return array
+     */
+    public function actionLoadImages(){
+
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $response = Image::getList('/upload/');
+        return $response;
+    }
+
+    /**
+     * Удаление изображения из директории сервера
+     * @return bool
+     */
+    public function actionDeleteImage(){
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $response = Image::delete($_POST['src']);
+        return $response;
     }
 }

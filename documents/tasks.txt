@@ -50,6 +50,8 @@ git branch -d branch-123 - удаление ветки
 backend/controllers
 backend/models
 backend/views
+
+Продумать архитектуру проекта, то есть где хранить статику(начало положено в #6 грузим картинки пока на backend)
 ---------------
 Задачи
 #1 - Создание миграций и основ для таблиц record category tag tag_article
