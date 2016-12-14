@@ -204,6 +204,7 @@ class Record extends \yii\db\ActiveRecord
         foreach (array_filter(array_diff($newTagIds, $currentTagIds)) as $tagId) {
             /** @var Tag $tag */
             if ($tag = Tag::findOne($tagId)) {
+                $tag->updateCounters(['frequency' => 1]);
                 $this->link('tagArticles', $tag);
             }
         }
@@ -211,6 +212,7 @@ class Record extends \yii\db\ActiveRecord
         foreach (array_filter(array_diff($currentTagIds, $newTagIds)) as $tagId) {
             /** @var Tag $tag */
             if ($tag = Tag::findOne($tagId)) {
+                $tag->updateCounters(['frequency' => -1]);
                 $this->unlink('tagArticles', $tag, true);
             }
         }
