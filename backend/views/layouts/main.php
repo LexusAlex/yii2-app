@@ -38,6 +38,7 @@ AppAsset::register($this);
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => Yii::t('app', 'Records'), 'url' => ['/record/index']],
         ['label' => Yii::t('app', 'Categories'), 'url' => ['/category/index']],
+        ['label' => Yii::t('app', 'Tags'), 'url' => ['/tag/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];

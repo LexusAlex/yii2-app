@@ -31,4 +31,9 @@ return [
     'Categories' => 'Категории',
     'Create Category' => 'Создать категорию',
     'Parent ID' => 'Родительская категория',
+    // tag
+    'Name' => 'Имя',
+    'Description' => 'Описание',
+    'Frequency' => 'Кол-во связанных записей тегом',
+    'Create Tag' => 'Создать тег'
 ];
