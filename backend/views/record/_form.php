@@ -29,9 +29,11 @@ use yii\widgets\ActiveForm;
             'toolbarInline'=> false,
             'theme' =>'gray',//optional: dark, red, gray, royal
             'language'=>'ru', // optional: ar, bs, cs, da, de, en_ca, en_gb, en_us ...
-            'fileUploadURL' => '/upload',
-            'imageManagerLoadURL' => '/upload',
-            'imageUploadURL' => '/upload',
+            'imageUploadURL' => '/record/upload-image',
+            //'imageUploadParams'=> ['file' => 'file'],
+            'imageManagerLoadURL'=> '/record/load-images',
+            'imageManagerDeleteURL'=> '/record/delete-image',
+            'imageManagerDeleteMethod'=> 'POST',
             'height'=> 300,
             //'width'=> 800,
             //'codeMirror'=> true,
@@ -49,9 +51,11 @@ use yii\widgets\ActiveForm;
             'toolbarInline'=> false,
             'theme' =>'gray',//optional: dark, red, gray, royal
             'language'=>'ru', // optional: ar, bs, cs, da, de, en_ca, en_gb, en_us ...
-            'fileUploadURL' => '/upload',
-            'imageManagerLoadURL' => '/upload',
-            'imageUploadURL' => '/upload',
+            'imageUploadURL' => '/record/upload-image',
+            //'imageUploadParams'=> ['file' => 'file'],
+            'imageManagerLoadURL'=> '/record/load-images',
+            'imageManagerDeleteURL'=> '/record/delete-image',
+            'imageManagerDeleteMethod'=> 'POST',
             'height'=> 300,
             //'width'=> 800,
             //'codeMirror'=> true,
