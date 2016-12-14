@@ -1,6 +1,7 @@
 <?php
 
 return [
+    // record
     'Category ID' => 'Категория',
     'Title' => 'Заголовок',
     'Slug' => 'URL',
@@ -26,4 +27,8 @@ return [
     'Select or Update tags'=> 'Выберете или обновите теги',
     'Title and Slug'=> 'Заголовок и slug',
     'Time of servers' => 'Время сервера',
+    // category
+    'Categories' => 'Категории',
+    'Create Category' => 'Создать категорию',
+    'Parent ID' => 'Родительская категория',
 ];

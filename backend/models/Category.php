@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "category".
@@ -82,5 +83,18 @@ class Category extends \yii\db\ActiveRecord
     public static function find()
     {
         return new CategoryQuery(get_called_class());
+    }
+
+    public static function getParentsList()
+    {
+        // Выбираем только те категории, у которых есть дочерние категории
+        $parents = Category::find()
+            ->select(['c.id', 'c.title'])
+            ->join('JOIN', 'category c', 'category.parent_id = c.id')
+            ->distinct(true)
+            ->indexBy('id')
+            ->all();
+
+        return ArrayHelper::map($parents, 'id', 'title');
     }
 }
