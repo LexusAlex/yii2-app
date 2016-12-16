@@ -27,6 +27,7 @@ return [
     'Select or Update tags'=> 'Выберете или обновите теги',
     'Title and Slug'=> 'Заголовок и slug',
     'Time of servers' => 'Время сервера',
+    'Category not found in table Category'=> 'Категория не найдена в таблице Category',
     // category
     'Categories' => 'Категории',
     'Create Category' => 'Создать категорию',
