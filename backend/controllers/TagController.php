@@ -66,6 +66,7 @@ class TagController extends Controller
         $model = new Tag();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', '{model} was successfully added',['model' => 'tag',]));
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -85,6 +86,7 @@ class TagController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', '{model} was successfully updated',['model' => 'tag',]));
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -102,7 +104,7 @@ class TagController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
+        Yii::$app->session->setFlash('warning', Yii::t('app', '{model} №{number} was successfully deleted',['model' => 'tag','number'=> $id]));
         return $this->redirect(['index']);
     }
 

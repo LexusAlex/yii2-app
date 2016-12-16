@@ -72,6 +72,7 @@ class RecordController extends Controller
         $model = new Record();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', '{model} was successfully added',['model' => 'record',]));
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -91,6 +92,7 @@ class RecordController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', '{model} was successfully updated',['model' => 'record',]));
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -108,7 +110,7 @@ class RecordController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
+        Yii::$app->session->setFlash('warning', Yii::t('app', '{model} №{number} was successfully deleted',['model' => 'record','number'=> $id]));
         return $this->redirect(['index']);
     }
 
