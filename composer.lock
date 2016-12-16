@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "985e83f5d38c8a36468f5a476a3fa775",
-    "content-hash": "d3e45af0c5776be23a8a6b792dfca4d9",
+    "hash": "75fbb2db38b2a3dcd8241d9d71c22b6b",
+    "content-hash": "5231dd1f5ba8c24a9050a1e153ffe724",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -287,6 +287,31 @@
                     "Gruntfile.js",
                     "node_modules",
                     "package.json"
+                ]
+            }
+        },
+        {
+            "name": "bower-asset/toastr",
+            "version": "2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johnpapa/toastr-bower.git",
+                "reference": "8ff63def898c6ac619fef2d284576e8e4941cb1a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johnpapa/toastr-bower/zipball/8ff63def898c6ac619fef2d284576e8e4941cb1a",
+                "reference": "8ff63def898c6ac619fef2d284576e8e4941cb1a",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.6.3"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "toastr.js",
+                    "toastr.css"
                 ]
             }
         },
@@ -585,6 +610,53 @@
                 "wysiwyg"
             ],
             "time": "2016-12-09 16:54:18"
+        },
+        {
+            "name": "lavrentiev/yii2-toastr",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lavrentiev/yii2-toastr.git",
+                "reference": "fb2a9c4e003865f30aba96fd12735d4e3bf73bea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lavrentiev/yii2-toastr/zipball/fb2a9c4e003865f30aba96fd12735d4e3bf73bea",
+                "reference": "fb2a9c4e003865f30aba96fd12735d4e3bf73bea",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/toastr": "2.1.1",
+                "php": ">=5.4.0",
+                "yiisoft/yii2": ">=2.0.6"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "lavrentiev\\widgets\\toastr\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Eugene Lavrentiev (RyanTedder)",
+                    "email": "lavrentiev.e@gmail.com",
+                    "homepage": "https://github.com/lavrentiev"
+                }
+            ],
+            "description": "Simple javascript toast notifications",
+            "homepage": "https://github.com/lavrentiev/yii2-toastr",
+            "keywords": [
+                "extension",
+                "jquery",
+                "notification",
+                "toastr",
+                "yii2"
+            ],
+            "time": "2016-12-06 20:00:12"
         },
         {
             "name": "rmrevin/yii2-fontawesome",

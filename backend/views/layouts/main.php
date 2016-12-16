@@ -63,7 +63,27 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= Alert::widget() ?>
+        <div class="container">
+            <?= \lavrentiev\widgets\toastr\NotificationFlash::widget([
+                'options' => [
+                    "closeButton" => false,
+                    "debug" => false,
+                    "newestOnTop" => false,
+                    "progressBar" => false,
+                    "positionClass" => "toast-top-right",
+                    "preventDuplicates" => false,
+                    "onclick" => null,
+                    "showDuration" => "300",
+                    "hideDuration" => "1000",
+                    "timeOut" => "5000",
+                    "extendedTimeOut" => "1000",
+                    "showEasing" => "swing",
+                    "hideEasing" => "linear",
+                    "showMethod" => "fadeIn",
+                    "hideMethod" => "fadeOut"
+                ]
+            ]) ?>
+        </div>
         <?= $content ?>
     </div>
 </div>
