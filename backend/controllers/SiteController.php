@@ -1,11 +1,13 @@
 <?php
 namespace backend\controllers;
 
+use backend\models\forms\ImageForm;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use yii\web\UploadedFile;
 
 /**
  * Site controller
@@ -26,7 +28,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index','upload-image'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -94,5 +96,19 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionUploadImage()
+    {
+        $model = new ImageForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+            if ($model->upload()) {
+                return $this->render('upload-image', ['model' => $model]);
+            }
+        }
+
+        return $this->render('upload-image', ['model' => $model]);
     }
 }
