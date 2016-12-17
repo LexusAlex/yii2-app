@@ -17,7 +17,15 @@ require (__DIR__ . '/../../vendor/froala/wysiwyg-editor-php-sdk/lib/FroalaEditor
  */
 class RecordController extends Controller
 {
-    public $enableCsrfValidation = false;
+    //public $enableCsrfValidation = false;
+    public function beforeAction($action) {
+
+        if($action->id === "upload-image" || $action->id === "delete-image"){
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
+    }
     /**
      * @inheritdoc
      */
@@ -140,7 +148,8 @@ class RecordController extends Controller
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
        // $response = Image::upload(\Yii::getAlias('@backend/web/upload/'));
-        $response = Image::upload('/upload/');
+        //$response = Image::upload(\Yii::$app->params['path.images'].'/');
+        $response = Image::upload('/uploads/images/');
         return $response;
         //$uploadfile = \Yii::getAlias('@backend/web/upload/').$_FILES['file']['name'];
         //move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile);
@@ -155,7 +164,7 @@ class RecordController extends Controller
     public function actionLoadImages(){
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $response = Image::getList('/upload/');
+        $response = Image::getList('/uploads/images/');
         return $response;
     }
 

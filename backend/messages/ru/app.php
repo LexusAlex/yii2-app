@@ -39,5 +39,7 @@ return [
     'Name' => 'Имя',
     'Description' => 'Описание',
     'Frequency' => 'Кол-во связанных записей тегом',
-    'Create Tag' => 'Создать тег'
+    'Create Tag' => 'Создать тег',
+
+    'Uploaded Images' => 'Загрузить изображения',
 ];
