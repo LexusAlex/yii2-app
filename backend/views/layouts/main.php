@@ -8,7 +8,6 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use common\widgets\Alert;
 
 AppAsset::register($this);
 ?>
@@ -28,26 +27,24 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'Sporthock',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => Yii::t('app', 'Records'), 'url' => ['/record/index']],
-        ['label' => Yii::t('app', 'Categories'), 'url' => ['/category/index']],
-        ['label' => Yii::t('app', 'Tags'), 'url' => ['/tag/index']],
-        ['label' => Yii::t('app', 'Uploaded Images'), 'url' => ['/site/upload-image']],
+        ['label' => Yii::t('app', 'Records'), 'url' => ['/record/index'], 'visible' => !Yii::$app->user->isGuest],
+        ['label' => Yii::t('app', 'Categories'), 'url' => ['/category/index'], 'visible' => !Yii::$app->user->isGuest],
+        ['label' => Yii::t('app', 'Tags'), 'url' => ['/tag/index'], 'visible' => !Yii::$app->user->isGuest],
+        ['label' => Yii::t('app', 'Uploaded Images'), 'url' => ['/site/upload-image'], 'visible' => !Yii::$app->user->isGuest],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+            . Html::submitButton(Yii::t('app', 'Logout'),
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()

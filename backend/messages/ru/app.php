@@ -42,4 +42,7 @@ return [
     'Create Tag' => 'Создать тег',
 
     'Uploaded Images' => 'Загрузить изображения',
+    'Logout' => 'Выход',
+    'Login' => 'Вход',
+    'Images was uploaded'=> 'Изображения были загружены',
 ];

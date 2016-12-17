@@ -28,9 +28,12 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index','upload-image'],
+                        'actions' => ['logout','upload-image'],
                         'allow' => true,
                         'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => false,
                     ],
                 ],
             ],
@@ -53,16 +56,6 @@ class SiteController extends Controller
                 'class' => 'yii\web\ErrorAction',
             ],
         ];
-    }
-
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
-    public function actionIndex()
-    {
-        return $this->render('index');
     }
 
     /**
@@ -105,7 +98,9 @@ class SiteController extends Controller
         if (Yii::$app->request->isPost) {
             $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
             if ($model->upload()) {
-                return $this->render('upload-image', ['model' => $model]);
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Images was uploaded'));
+                //return $this->render('upload-image', ['model' => $model]);
+                return $this->redirect(['upload-image']);
             }
         }
 
