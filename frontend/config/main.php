@@ -11,6 +11,8 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'defaultRoute' => 'front',
+    'layout'=> 'front',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -44,6 +46,12 @@ return [
             ],
         ],
         */
+        'assetManager' => [
+            'linkAssets' => true,
+            'bundles' => [
+                //'yii\bootstrap\BootstrapAsset' =>
+            ],
+        ],
     ],
     'params' => $params,
 ];
