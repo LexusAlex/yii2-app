@@ -52,6 +52,7 @@ backend/controllers
 backend/models
 backend/views
 ln -s /var/www/yii2.loc/frontend/web/uploads/ /var/www/yii2.loc/backend/web/ символьные ссылки
+ln -s /home/sporthoc/torg94/frontend/web/upload/ /home/sporthoc/torg94/backend/web/ на хостинге нужно указать свой путь
 Продумать архитектуру проекта, то есть где хранить статику(начало положено в #6 грузим картинки пока на backend)
 Анализировать и понимать что делаешь по задачам - рефлексия
 
@@ -91,6 +92,24 @@ source/js
 source/images
 
 gulp --tasks - список задач
+модули gulp для работы
+npm install --save-dev
+gulp
+gulp-less
+gulp-cssmin
+gulp-autoprefixer
+gulp-rename
+rimraf
+gulp-rigger
+gulp-newer
+gulp-imagemin
+imagemin-pngquant
+browser-sync
+gulp-notify
+gulp-uglify
+
+Подключим необходимые файлы в gulpfile.js
+Пропишем основные пути
 ---------------
 Задачи
 #1 - Создание миграций и основ для таблиц record category tag tag_article
