@@ -22,5 +22,17 @@ return [
             //'datetimeFormat' => 'd-M-Y H:i:s',
             //'timeFormat' => 'H:i:s',
         ],
+        'i18n' => [ // переводы сообщений
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                    'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                    ],
+                ],
+            ],
+        ],
     ],
 ];
