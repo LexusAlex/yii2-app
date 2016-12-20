@@ -19,6 +19,7 @@ class AppAsset extends AssetBundle
         'js/main.js'
     ];
     public $depends = [
+        'frontend\assets\NormalizeAsset',
         //'yii\web\YiiAsset',
         //'yii\bootstrap\BootstrapAsset',
     ];

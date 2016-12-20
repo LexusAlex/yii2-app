@@ -46,18 +46,6 @@ return [
             ],
         ],
         */
-        'i18n' => [ // переводы сообщений
-            'translations' => [
-                '*' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@backend/messages',
-                    //'sourceLanguage' => 'en-US',
-                    'fileMap' => [
-                        'app' => 'app.php',
-                    ],
-                ],
-            ],
-        ],
         'assetManager' => [
             //'linkAssets' => true,
             'bundles' => [
