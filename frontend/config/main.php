@@ -11,7 +11,8 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
-    'defaultRoute' => 'front',
+    'defaultRoute' => 'front/index',
+    //'catchAll' => ['site/offline'],
     'layout'=> 'front',
     'components' => [
         'request' => [
@@ -38,14 +39,21 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
+            //'enablePrettyUrl' => true,
+            //'showScriptName' => false,
+            'enableStrictParsing' => true, // строгий разбор
+            //'suffix' => '.html',
             'rules' => [
+                'page/<page:\d+>' => 'front/index',
+                '' => 'front/index',
+                'blog/<slug:[a-z0-9-]+>' => 'blog/index',
+                'blog/<action:(category|tag)>/<id:\d{1,4}>' => 'blog/<action>',
+
             ],
         ],
-        */
+
         'assetManager' => [
             'linkAssets' => true,
             'bundles' => [

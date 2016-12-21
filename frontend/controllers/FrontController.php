@@ -37,6 +37,8 @@ class FrontController extends Controller
             'pagination' => [
                 'pageSize' => 2,
                 'pageSizeParam' => false,
+                'forcePageParam' => false,
+                //'route' => 'front/index'
             ],
         ]);
         return $this->render('index',['dataProvider'=>$dataProvider]);

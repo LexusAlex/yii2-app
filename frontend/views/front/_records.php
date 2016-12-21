@@ -3,10 +3,11 @@
  * @var $this \yii\web\View
  * @var $model backend\models\Record
  */
+use yii\helpers\Html;
 ?>
 <article class="article" role="article">
         <header>
-            <h2><a href="<?php echo \yii\helpers\Url::to(['view', 'slug' => $model->slug]); ?>"><?php echo $model->title; ?></a></h2>
+            <h2><?php echo Html::a($model->title,['/blog/index', 'slug' => $model->slug]);?></h2>
             <div class="row">
                 <div class="row__time">
                     <div class="article__time">
@@ -18,7 +19,7 @@
                 <div class="row__time">
                     <div class="article__category">
                         <em>
-                            <a href=""><?php echo $model->category->title; ?></a>
+                            <?php echo Html::a($model->category->title,['/blog/category', 'id' => $model->category->id]);?>
                         </em>
                     </div>
                 </div>
@@ -27,13 +28,13 @@
             <?php echo $model->preview; ?>
         </header>
         <footer>
-            <a class="button button--main button--sm button--block" href="">Читать далее</a>
+            <?php echo Html::a('Читать далее',['/blog/index', 'slug' => $model->slug],['class' =>'button button--main button--sm button--block']);?>
             <div class="alert">
                 <span>Теги:</span>
                 <?php
                 $tags = \yii\helpers\ArrayHelper::map($model->tagArticles, 'id', 'name');
-                    foreach ($tags as $tag){ ?>
-                        <a class="button button--sm" href=""><?php echo $tag;?></a>
+                    foreach ($tags as $id=>$tag){ ?>
+                        <?php echo Html::a($tag,['/blog/tag', 'id' => $id],['class'=>'button button--sm']);?>
                    <?php }?>
             </div>
         </footer>
