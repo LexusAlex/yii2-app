@@ -7,6 +7,7 @@ use frontend\assets\AppAsset;
 use yii\helpers\Html;
 
 AppAsset::register($this);
+nezhelskoy\highlight\HighlightAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

@@ -188,7 +188,7 @@ pre {
   padding: 1em;
   border-radius: 0.3rem;
   border: 1px solid #eceeef;
-  white-space: normal;
+  white-space: pre;
   -moz-tab-size: 2;
     -o-tab-size: 2;
        tab-size: 2;

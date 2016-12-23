@@ -25,7 +25,7 @@ use yii\helpers\Html;
                 </div>
             </div>
             <hr>
-            <?php echo $model->preview; ?>
+            <?php echo Html::decode($model->preview); ?>
         </header>
         <footer>
             <?php echo Html::a('Читать далее',['/blog/index', 'slug' => $model->slug],['class' =>'button button--main button--sm button--block']);?>

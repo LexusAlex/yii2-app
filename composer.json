@@ -22,7 +22,8 @@
         "froala/wysiwyg-editor-php-sdk" : "1.0.1",
         "lavrentiev/yii2-toastr": "~2.0.0",
         "kartik-v/yii2-widget-fileinput": "~1.0.3",
-        "components/normalize.css": "*"
+        "components/normalize.css": "*",
+        "nezhelskoy/yii2-highlight": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

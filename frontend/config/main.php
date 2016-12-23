@@ -57,6 +57,15 @@ return [
         'assetManager' => [
             'linkAssets' => true,
             'bundles' => [
+                'nezhelskoy\highlight\HighlightAsset' => [
+                    'selector' => 'pre',
+                    'options' => [
+                        'tabReplace'=> ' ',
+                        //'classPrefix' => 'custom-',
+                        'useBR' => false,
+                    ],
+                    'css' => ['dist/styles/github.css'],
+                ],
                 //'yii\bootstrap\BootstrapAsset' =>
             ],
         ],

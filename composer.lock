@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0efedeaaf2fc537aa32bdf4aeff6f449",
-    "content-hash": "c9fe5f40fe242a935ba8f4deb684393f",
+    "hash": "d2a31bc4c99fbd50cc3cd09f69b53c4c",
+    "content-hash": "a1c03c3ef7915dd839ad0a350521cc22",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -849,6 +849,55 @@
             "time": "2016-12-06 20:00:12"
         },
         {
+            "name": "nezhelskoy/yii2-highlight",
+            "version": "v1.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nezhelskoy/yii2-highlight.git",
+                "reference": "a2d09ca92878ee6b2172eda622e8dba5726cd935"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nezhelskoy/yii2-highlight/zipball/a2d09ca92878ee6b2172eda622e8dba5726cd935",
+                "reference": "a2d09ca92878ee6b2172eda622e8dba5726cd935",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "~2"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "nezhelskoy\\highlight\\": "src/",
+                    "nezhelskoy\\highlight\\examples\\": "examples/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry A. Nezhelskoy",
+                    "email": "dmitry@nezhelskoy.pro",
+                    "homepage": "http://nezhelskoy.pro"
+                }
+            ],
+            "description": "Yii2 highlight.js extension",
+            "keywords": [
+                "highlight",
+                "highlight.js",
+                "yii2"
+            ],
+            "time": "2016-09-05 18:30:31"
+        },
+        {
             "name": "rmrevin/yii2-fontawesome",
             "version": "2.17.0",
             "source": {
@@ -1099,20 +1148,23 @@
         },
         {
             "name": "yiisoft/yii2-composer",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-composer.git",
-                "reference": "7452fd908a5023b8bb5ea1b123a174ca080de464"
+                "reference": "3f4923c2bde6caf3f5b88cc22fdd5770f52f8df2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/7452fd908a5023b8bb5ea1b123a174ca080de464",
-                "reference": "7452fd908a5023b8bb5ea1b123a174ca080de464",
+                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/3f4923c2bde6caf3f5b88cc22fdd5770f52f8df2",
+                "reference": "3f4923c2bde6caf3f5b88cc22fdd5770f52f8df2",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.0"
+            },
+            "require-dev": {
+                "composer/composer": "^1.0"
             },
             "type": "composer-plugin",
             "extra": {
@@ -1142,7 +1194,7 @@
                 "extension installer",
                 "yii2"
             ],
-            "time": "2016-02-06 00:49:24"
+            "time": "2016-12-20 13:26:02"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
