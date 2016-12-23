@@ -347,7 +347,9 @@ dd + dt {
 .main-nav__item {
   display: inline-block;
   line-height: 0.9em;
+  margin-right: -0.4%;
 }
+.main-nav__item--active,
 .main-nav__item:hover {
   background-color: #00526e;
 }

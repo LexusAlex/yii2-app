@@ -28,14 +28,18 @@ nezhelskoy\highlight\HighlightAsset::register($this);
             { Sporthock blog }
         </h2>
         <nav class="main-nav" role="navigation">
-            <ul class="main-nav__list">
-                <li class="main-nav__item">
-                    <a class="main-nav__link" href="#">Блог</a>
-                </li>
-                <li class="main-nav__item">
-                    <a class="main-nav__link" href="#">Об авторе</a>
-                </li>
-            </ul>
+            <?php
+            echo \yii\widgets\Menu::widget([
+                'items' => [
+                    ['label' => Yii::t('app', 'Blog'), 'url' => ['blog/index']],
+                    ['label' => Yii::t('app', 'About'), 'url' => ['front/about'],],
+                ],
+                'activeCssClass'=> 'main-nav__item--active',
+                'itemOptions' => ['class' => 'main-nav__item',],
+                'linkTemplate' => '<a class="main-nav__link" href="{url}">{label}</a>',
+                'options' => ['class' => 'main-nav__list'],
+            ]);
+            ?>
         </nav>
     </header>
     <main class="container" role="main">

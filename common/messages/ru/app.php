@@ -45,4 +45,6 @@ return [
     'Logout' => 'Выход',
     'Login' => 'Вход',
     'Images was uploaded'=> 'Изображения были загружены',
+    'Blog' => 'Блог',
+    'About' => 'Об авторе',
 ];

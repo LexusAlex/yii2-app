@@ -49,7 +49,10 @@ return [
                 'page/<page:\d+>' => 'front/index',
                 '' => 'front/index',
                 'blog/<slug:[a-z0-9-]+>' => 'blog/index',
+                'blog' => 'blog/index',
                 'blog/<action:(category|tag)>/<id:\d{1,4}>' => 'blog/<action>',
+
+                'about' => 'front/about'
 
             ],
         ],
