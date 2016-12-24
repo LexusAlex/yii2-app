@@ -25,7 +25,7 @@ nezhelskoy\highlight\HighlightAsset::register($this);
     <?php $this->beginBody() ?>
     <header class="header" role="banner">
         <h2 class="container header__logo">
-            { Sporthock blog }
+            <?php echo Html::a('{ '.Yii::$app->name.' }',['front/index'],['style'=>'text-decoration:none;color:#333333']);?>
         </h2>
         <nav class="main-nav" role="navigation">
             <?php
@@ -47,27 +47,22 @@ nezhelskoy\highlight\HighlightAsset::register($this);
             <?= $content ?>
             <aside class="row__right">
                 <div class="alert">
-                    <div class="alert__header">Последние записи</div>
-                    <p>
-                        <a class="alert__link" href="">Название статьи</a>
-                    </p>
-                    <p>
-                        <a class="alert__link" href="">Название статьи</a>
-                    </p>
+                    <div class="alert__header"><?php echo Yii::t('app', 'Last records');?></div>
+                    <?php echo \frontend\widgets\LastRecordsWidget::widget();?>
                 </div>
 
                 <div class="alert">
-                    <div class="alert__header">Категории</div>
-                    <p>
-                        <a class="alert__link" href="">Категория 1</a>
-                    </p>
-                    <p>
-                        <a class="alert__link" href="">Категория 2</a>
-                    </p>
+                    <div class="alert__header"><?php echo Yii::t('app', 'Categories');?></div>
+                    <?php echo \frontend\widgets\CategoriesWidget::widget();?>
                 </div>
             </aside>
         </div>
     </main>
+    <footer class="header" role="contentinfo">
+        <h3 class="container header__logo">
+            { <?php echo Yii::$app->name;?> } <small><?php echo date('Y');?></small>
+        </h3>
+    </footer>
     <?php $this->endBody() ?>
     </body>
 </html>

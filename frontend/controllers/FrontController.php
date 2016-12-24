@@ -21,7 +21,7 @@ class FrontController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => $records,
             'pagination' => [
-                'pageSize' => 2,
+                'pageSize' => 5,
                 'pageSizeParam' => false,
                 'forcePageParam' => false,
                 //'route' => 'front/index'
