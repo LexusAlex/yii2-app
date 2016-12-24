@@ -47,4 +47,6 @@ return [
     'Images was uploaded'=> 'Изображения были загружены',
     'Blog' => 'Блог',
     'About' => 'Об авторе',
+    'Last records' => 'Последние записи',
+    'Read more' => 'Читать далее',
 ];

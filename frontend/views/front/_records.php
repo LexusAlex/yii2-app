@@ -28,10 +28,12 @@ use yii\helpers\Html;
             <?php echo Html::decode($model->preview); ?>
         </header>
         <footer>
-            <?php echo Html::a('Читать далее',['/blog/index', 'slug' => $model->slug],['class' =>'button button--main button--sm button--block']);?>
+            <?php echo Html::a(Yii::t('app', 'Read more'),['/blog/index', 'slug' => $model->slug],['class' =>'button button--main button--sm button--block']);?>
             <div class="alert">
-                <span>Теги:</span>
                 <?php
+                if (!empty($model->tagArticles)){
+                    echo Html::tag('span', Yii::t('app', 'Tags').': ');
+                }
                 $tags = \yii\helpers\ArrayHelper::map($model->tagArticles, 'id', 'name');
                     foreach ($tags as $id=>$tag){ ?>
                         <?php echo Html::a($tag,['/blog/tag', 'id' => $id],['class'=>'button button--sm']);?>
