@@ -17,7 +17,7 @@ class FrontController extends Controller
      */
     public function actionIndex()
     {
-        $records = Record::find()->select(['id','category_id','title','slug','preview','status','created_at'])->andWhere(['status'=>10])->with(['category','tagArticles'])->orderBy('id DESC');
+        $records = Record::find()->select(['id','category_id','title','slug','preview','status','created_at'])->andWhere(['status'=>10])->with(['category','tagArticles'])->orderBy('created_at DESC');
         $dataProvider = new ActiveDataProvider([
             'query' => $records,
             'pagination' => [

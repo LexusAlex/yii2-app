@@ -2,7 +2,10 @@
 
 namespace frontend\controllers;
 
+use backend\models\Category;
+use backend\models\Record;
 use yii\base\Controller;
+use yii\web\NotFoundHttpException;
 
 /**
  * Class BlogController
@@ -12,10 +15,17 @@ class BlogController extends Controller
 {
     /**
      * @return string
+     * @throws NotFoundHttpException
      */
-    public function actionIndex()
+    public function actionView()
     {
-        return $this->render('index');
+        $slug = \Yii::$app->request->get('slug');
+
+        if (($model = Record::findOne(['slug'=>$slug])) !== null) {
+            return $this->render('view',['model'=>$model]);
+        } else {
+            throw new NotFoundHttpException(\Yii::t('app', 'The requested article does not exist.'));
+        }
     }
 
     /**

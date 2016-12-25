@@ -31,7 +31,6 @@ nezhelskoy\highlight\HighlightAsset::register($this);
             <?php
             echo \yii\widgets\Menu::widget([
                 'items' => [
-                    ['label' => Yii::t('app', 'Blog'), 'url' => ['blog/index']],
                     ['label' => Yii::t('app', 'About'), 'url' => ['front/about'],],
                 ],
                 'activeCssClass'=> 'main-nav__item--active',
