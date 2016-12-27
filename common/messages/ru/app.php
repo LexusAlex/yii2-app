@@ -49,4 +49,5 @@ return [
     'About' => 'Об авторе',
     'Last records' => 'Последние записи',
     'Read more' => 'Читать далее',
+    'The requested article does not exist.' => 'Запись не существует',
 ];

@@ -35,6 +35,8 @@ use yii\widgets\ActiveForm;
             'imageManagerDeleteURL'=> '/record/delete-image',
             'imageManagerDeleteMethod'=> 'POST',
             'height'=> 300,
+            'imageDefaultWidth'=>0,
+            'imageOutputSize'=> true
             //'width'=> 800,
             //'codeMirror'=> true,
         ]
@@ -57,6 +59,8 @@ use yii\widgets\ActiveForm;
             'imageManagerDeleteURL'=> '/record/delete-image',
             'imageManagerDeleteMethod'=> 'POST',
             'height'=> 300,
+            'imageDefaultWidth'=>0,
+            'imageOutputSize'=> true
             //'width'=> 800,
             //'codeMirror'=> true,
         ]

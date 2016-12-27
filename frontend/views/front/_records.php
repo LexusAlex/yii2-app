@@ -12,7 +12,7 @@ use yii\helpers\Html;
             <div class="row__time">
                 <div class="article__time">
                     <em>
-                        <time datetime="2014-01-17"><?php echo Yii::$app->formatter->asDate($model->created_at, 'long'); ?></time>
+                        <time datetime="<?php echo Yii::$app->formatter->asDate($model->created_at, 'php:yy-m-d'); ?>"><?php echo Yii::$app->formatter->asDate($model->created_at, 'long'); ?></time>
                     </em>
                 </div>
             </div>
@@ -36,7 +36,7 @@ use yii\helpers\Html;
             }
             $tags = \yii\helpers\ArrayHelper::map($model->tagArticles, 'id', 'name');
                 foreach ($tags as $id=>$tag){ ?>
-                    <?php echo Html::a($tag,['/blog/tag', 'id' => $id],['class'=>'button button--sm']);?>
+                    <?php echo Html::a($tag,['/blog/tag', 'name' => $tag],['class'=>'button button--sm']);?>
                <?php }?>
         </div>
     </footer>

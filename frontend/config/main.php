@@ -48,13 +48,15 @@ return [
             //'suffix' => '.html',
             'rules' => [
                 'page/<page:\d+>' => 'front/index',
-                '' => 'front/index',
-
+                '/' => 'front/index',
                 'blog' => 'front/index',
-                'blog/<slug:[a-z0-9-]+>' => 'blog/view',
-                'blog/<action:(category|tag)>/<id:\d{1,4}>' => 'blog/<action>',
 
-                'about' => 'front/about'
+                'blog/<slug:[a-z0-9-]+>' => 'blog/view',
+                'blog/<action:category>/<id:\d{1,4}>' => 'blog/<action>',
+                'blog/<action:tag>/<name:[a-zа-я0-9-]+>' => 'blog/<action>',
+
+                'about' => 'front/about',
+
 
             ],
         ],

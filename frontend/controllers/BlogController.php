@@ -4,7 +4,9 @@ namespace frontend\controllers;
 
 use backend\models\Category;
 use backend\models\Record;
-use yii\base\Controller;
+use backend\models\Tag;
+use yii\data\ActiveDataProvider;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -14,14 +16,18 @@ use yii\web\NotFoundHttpException;
 class BlogController extends Controller
 {
     /**
+     * Отображение одной конкретной записи
      * @return string
      * @throws NotFoundHttpException
      */
-    public function actionView()
+    public function actionView($slug)
     {
-        $slug = \Yii::$app->request->get('slug');
+        $model = Record::find()
+            ->select(['id','category_id','title','slug','preview','status','created_at'])
+            ->where(['slug'=>$slug])
+            ->one();
 
-        if (($model = Record::findOne(['slug'=>$slug])) !== null) {
+        if ($model !== null) {
             return $this->render('view',['model'=>$model]);
         } else {
             throw new NotFoundHttpException(\Yii::t('app', 'The requested article does not exist.'));
@@ -29,18 +35,68 @@ class BlogController extends Controller
     }
 
     /**
+     * Отображение записей в конктретной категории
+     * @param $id
      * @return string
+     * @throws NotFoundHttpException
      */
-    public function actionCategory()
+    public function actionCategory($id)
     {
-        return $this->render('category');
+        $records = Record::find()
+            ->select(['id','category_id','title','slug','preview','status','created_at'])
+            ->andWhere(['category_id'=>$id ,'status'=>10])
+            ->with(['category','tagArticles'])
+            ->orderBy('created_at DESC');
+
+        if ($records !== null) {
+            $dataProvider = new ActiveDataProvider([
+                'query' => $records,
+                'pagination' => [
+                    'pageSize' => 5,
+                    'pageSizeParam' => false,
+                    'forcePageParam' => false,
+                    //'route' => 'front/index'
+                ],
+            ]);
+
+            if(!empty($dataProvider->getModels())){
+                $category = $dataProvider->getModels()[0]->category->title;
+            } else {
+                $category = null;
+            }
+
+            return $this->render('category',['dataProvider'=>$dataProvider,'category'=>$category]);
+        } else {
+            throw new NotFoundHttpException(\Yii::t('app', 'The requested article does not exist.'));
+        }
     }
 
     /**
+     * Отображение записей с определенным тегом
+     * @param $id
      * @return string
+     * @throws NotFoundHttpException
      */
-    public function actionTag()
+    public function actionTag($name)
     {
-        return $this->render('tag');
+        $tag = Tag::find()
+            ->select(['id','name'])
+            ->andWhere(['name'=>$name])
+            ->one();
+
+        if ($tag !== null) {
+            $dataProvider = new ActiveDataProvider([
+                'query' => $tag->getTagArticles()->with(['tagArticles'])->orderBy('created_at DESC'),
+                'pagination' => [
+                    'pageSize' => 5,
+                    'pageSizeParam' => false,
+                    'forcePageParam' => false,
+                    //'route' => 'front/index'
+                ],
+            ]);
+            return $this->render('tag',['dataProvider'=>$dataProvider,'tag'=>$tag->name]);
+        } else {
+            throw new NotFoundHttpException(\Yii::t('app', 'The requested article does not exist.'));
+        }
     }
 }
