@@ -4,6 +4,9 @@
 /* @var $model backend\models\Record */
 
 use yii\helpers\Html;
+
+$this->title = $model->title;
+$this->registerMetaTag(['name' => 'description','content' => \yii\helpers\StringHelper::truncateWords(strip_tags($model->preview),20 , '')]);
 ?>
 <section class="row__left">
     <article class="article" role="article">

@@ -15,6 +15,10 @@ use yii\web\NotFoundHttpException;
  */
 class BlogController extends Controller
 {
+    public function actionIndex()
+    {
+        return $this->redirect(['/front/index']);
+    }
     /**
      * Отображение одной конкретной записи
      * @return string
@@ -65,7 +69,13 @@ class BlogController extends Controller
                 $category = null;
             }
 
-            return $this->render('category',['dataProvider'=>$dataProvider,'category'=>$category]);
+            if(!empty(\Yii::$app->request->get('page'))){
+                $p = \Yii::$app->request->get('page');
+            } else {
+                $p = null;
+            }
+
+            return $this->render('category',['dataProvider'=>$dataProvider,'category'=>$category, 'page'=>$p]);
         } else {
             throw new NotFoundHttpException(\Yii::t('app', 'The requested article does not exist.'));
         }
@@ -94,7 +104,13 @@ class BlogController extends Controller
                     //'route' => 'front/index'
                 ],
             ]);
-            return $this->render('tag',['dataProvider'=>$dataProvider,'tag'=>$tag->name]);
+            if(!empty(\Yii::$app->request->get('page'))){
+                $p = \Yii::$app->request->get('page');
+            } else {
+                $p = null;
+            }
+
+            return $this->render('tag',['dataProvider'=>$dataProvider,'tag'=>$tag->name, 'page'=>$p]);
         } else {
             throw new NotFoundHttpException(\Yii::t('app', 'The requested article does not exist.'));
         }

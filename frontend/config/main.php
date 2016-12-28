@@ -47,13 +47,21 @@ return [
             'enableStrictParsing' => true, // строгий разбор
             //'suffix' => '.html',
             'rules' => [
-                'page/<page:\d+>' => 'front/index',
+                'page-<page:\d+>' => 'front/index',
                 '/' => 'front/index',
-                'blog' => 'front/index',
+                'blog' => 'blog/index',
 
                 'blog/<slug:[a-z0-9-]+>' => 'blog/view',
-                'blog/<action:category>/<id:\d{1,4}>' => 'blog/<action>',
-                'blog/<action:tag>/<name:[a-zа-я0-9-]+>' => 'blog/<action>',
+                'blog/category/<id:\d{1,4}>/page-<page:\d+>' => 'blog/category',
+                'blog/category/<id:\d{1,4}>' => 'blog/category',
+                'blog/tag/<name:[a-zа-я0-9-]+>/page-<page:\d+>' => 'blog/tag',
+                'blog/tag/<name:[a-zа-я0-9-]+>' => 'blog/tag',
+                /*[
+                    'pattern' => 'blog/category/<id:\d{1,4}>/page-<page>',
+                    'route' => 'blog/category',
+                    'suffix' => '/',
+                    'defaults' => ['page' => '',],
+                ],*/
 
                 'about' => 'front/about',
 

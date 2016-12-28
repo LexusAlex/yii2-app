@@ -17,7 +17,12 @@ class FrontController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if(!empty(\Yii::$app->request->get('page'))){
+            $p = \Yii::$app->request->get('page');
+        } else {
+            $p = null;
+        }
+        return $this->render('index',['page' => $p]);
     }
 
     /**

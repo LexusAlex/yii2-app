@@ -2,6 +2,10 @@
 /* @var $this yii\web\View */
 /* @var $dataProvider \yii\data\ActiveDataProvider */
 /* @var $tag string */
+/* @var $page string*/
+$p = !is_null($page) ? ' - Страница '.$page : '';
+$this->title = 'Записи c меткой ' . $tag . $p;
+$this->registerMetaTag(['name' => 'description','content' => 'Записи c меткой ' . $tag . $p]);
 ?>
 <section class="row__left">
     <h1>Записи c тегом "<?php echo $tag;?>"</h1>
