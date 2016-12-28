@@ -62,6 +62,7 @@ class Record extends \yii\db\ActiveRecord
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'user_id',
                 'updatedByAttribute' => false,
+                //'value'=>1
             ],
             [
                 'class' => SluggableBehavior::className(),
