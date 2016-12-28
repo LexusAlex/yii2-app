@@ -46,6 +46,16 @@ return [
             ],
         ],
         */
+        'urlManagerFrontend' => [
+            'class' => 'yii\web\UrlManager',
+            'baseUrl' =>  $params['path.frontend'],
+            'enablePrettyUrl' => true,
+            //'enableStrictParsing' => true,
+            'showScriptName' => false,
+            'rules' => [
+
+            ],
+        ],
         'assetManager' => [
             //'linkAssets' => true,
             'bundles' => [

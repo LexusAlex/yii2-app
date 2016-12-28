@@ -27,7 +27,7 @@ class BlogController extends Controller
     public function actionView($slug)
     {
         $model = Record::find()
-            ->select(['id','category_id','title','slug','preview','status','created_at'])
+            ->select(['id','category_id','title','slug','preview','content','status','created_at'])
             ->where(['slug'=>$slug])
             ->one();
 
@@ -47,7 +47,7 @@ class BlogController extends Controller
     public function actionCategory($id)
     {
         $records = Record::find()
-            ->select(['id','category_id','title','slug','preview','status','created_at'])
+            ->select(['id','category_id','title','slug','preview','content','status','created_at'])
             ->andWhere(['category_id'=>$id ,'status'=>10])
             ->with(['category','tagArticles'])
             ->orderBy('created_at DESC');

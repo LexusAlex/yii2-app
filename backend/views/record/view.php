@@ -25,6 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
         <?= Html::a(Yii::t('app', 'Create Record'), ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a(Yii::t('app', 'Records'), ['index'], ['class' => 'btn btn-primary']) ?>
+        <a class="btn btn-primary" href="<?php echo Yii::$app->urlManagerFrontend->createUrl(['blog/'.$model->slug])?>" target="_blank"><?php echo Yii::t('app', 'Просмотреть на проде')?></a>
+
     </p>
 
     <?= DetailView::widget([

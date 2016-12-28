@@ -95,6 +95,12 @@ class RecordController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', Yii::t('app', '{model} was successfully added',['model' => 'record',]));
+            if(isset(Yii::$app->request->post()['Record']['apply'])){
+                /*return $this->render('update', [
+                    'model' => $model,
+                ]);*/
+                return $this->redirect(['update', 'id' => $model->id]);
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -115,6 +121,11 @@ class RecordController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', Yii::t('app', '{model} was successfully updated',['model' => 'record',]));
+            if(isset(Yii::$app->request->post()['Record']['apply'])){
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
