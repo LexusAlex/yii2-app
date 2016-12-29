@@ -18,6 +18,7 @@ use yii\widgets\ActiveForm;
     )->hint(Yii::t('app', 'Select a category')); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true])->hint(Yii::t('app', 'Title and Slug')) ?>
+    <?= $form->field($model, 'description')->textInput(['maxlength' => true])->hint(Yii::t('app', 'Description')) ?>
     <label><?php echo Yii::t('app', 'Preview')?></label>
     <?php echo froala\froalaeditor\FroalaEditorWidget::widget([
         'model' => $model,
@@ -36,12 +37,19 @@ use yii\widgets\ActiveForm;
             'imageManagerDeleteMethod'=> 'POST',
             'height'=> 300,
             'imageDefaultWidth'=>0,
-            'imageOutputSize'=> true
+            'imageOutputSize'=> true,
+            //'useClasses'=> false
+            //'disableRightClick' => true
             //'width'=> 800,
             //'codeMirror'=> true,
-        ]
+        ],
+        'excludedPlugins' =>[
+            'emoticons'
+        ],
     ]); // https://froala.com/wysiwyg-editor/docs/options опции?>
-
+    <?php if(!is_null($model->getFirstError('preview'))){?>
+        <div style="color:#a94442" class="help-block"><?php echo $model->getFirstError('preview');?></div>
+    <?php }?>
     <label><?php echo Yii::t('app', 'Content')?></label>
     <?php echo froala\froalaeditor\FroalaEditorWidget::widget([
         'model' => $model,
@@ -65,7 +73,10 @@ use yii\widgets\ActiveForm;
             //'codeMirror'=> true,
         ]
     ]); // https://froala.com/wysiwyg-editor/docs/options опции?>
-
+    <?php if(!is_null($model->getFirstError('content'))){?>
+        <div style="color:#a94442" class="help-block"><?php echo $model->getFirstError('content');?></div>
+    <?php }?>
+    <?= $form->field($model, 'position')->textInput([])->hint(Yii::t('app', 'Position in site').': из '.$model::find()->count()) ?>
     <?= $form->field($model, 'status')->dropDownList(
         \backend\models\Record::getStatusesText(),
         ['prompt' => Yii::t('app', 'Select a status')]

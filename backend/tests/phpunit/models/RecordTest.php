@@ -31,23 +31,25 @@ class RecordTest extends \PHPUnit_Framework_TestCase
      * Валидируем заведомо ложные данные
      * @dataProvider data
      */
-    public function testNotValidate($category,$title,$preview,$content)
+    public function testNotValidate($category,$title,$preview,$content,$description)
     {
         $model = new Record();
         $model->category_id = $category; // проверяем на существование данной категории в таблице Category
         $model->title = $title;
         $model->preview = $preview;
         $model->content = $content;
+        $model->description = $description;
         $this->assertFalse($model->validate(),'validate!');
     }
 
     public function data() {
         return [
-            [[], 'Заголово', 'Превью', 'Контент'],
-            ['string', 'Заголово', 'Превью', 'Контент'],
-            [1, 1, 'Превью', 'Контент'],
-            [1, 'title', 'Превью', []],
-            [1155, 'title', 'Превью', 'Preview'], // так как нет такой категории
+            [[], 'Заголово', 'Превью', 'Контент','description'],
+            ['string', 'Заголово', 'Превью', 'Контент','description'],
+            [1, 1, 'Превью', 'Контент','description'],
+            [1, 'title', 'Превью', [],'description'],
+            [1, 'title', 'Превью', 'К',1223],
+            [1155, 'title', 'Превью', 'Preview','description'], // так как нет такой категории
         ];
     }
 }

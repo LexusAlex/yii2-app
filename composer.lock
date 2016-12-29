@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d2a31bc4c99fbd50cc3cd09f69b53c4c",
-    "content-hash": "a1c03c3ef7915dd839ad0a350521cc22",
+    "hash": "35b20f2445b6c686f2fb31257d6c4c95",
+    "content-hash": "684f9b4367c85ec82c98c11d028af378",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1001,6 +1001,55 @@
                 "mailer"
             ],
             "time": "2016-11-24 01:01:23"
+        },
+        {
+            "name": "yii2tech/ar-position",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2tech/ar-position.git",
+                "reference": "69ee11e4eba7480bc110813d468e438060eca95b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2tech/ar-position/zipball/69ee11e4eba7480bc110813d468e438060eca95b",
+                "reference": "69ee11e4eba7480bc110813d468e438060eca95b",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii2tech\\ar\\position\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "Provides support for ActiveRecord custom sort in Yii2",
+            "keywords": [
+                "active",
+                "order",
+                "position",
+                "record",
+                "sort",
+                "yii2"
+            ],
+            "time": "2015-12-26 12:05:01"
         },
         {
             "name": "yiisoft/yii2",

@@ -62,7 +62,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => \common\models\User::find()->select(['username', 'id'])->indexBy('id')->column(),
                 'value' => 'user.username',
             ],*/
-            'slug',
+            //'slug',
+            'position',
+            //'description',
             // 'preview:ntext',
             // 'content:ntext',
             [

@@ -25,7 +25,7 @@ class RecordSearch extends Record
     public function rules()
     {
         return [
-            [['id', 'category_id', 'user_id', 'status'], 'integer'],
+            [['id', 'category_id', 'user_id','position', 'status'], 'integer'],
             [['title', 'slug', 'preview', 'content', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -49,7 +49,7 @@ class RecordSearch extends Record
     public function search($params)
     {
         //$query = Record::find();
-        $query = Record::find()->with(['category','tagArticles'])->orderBy('id DESC');
+        $query = Record::find()->with(['category','tagArticles'])->orderBy('position DESC');
         //$query = Record::find()->joinWith(['category','user']);
         //$query = Record::find()->joinWith(['category']);
         // add conditions that should always apply here
@@ -82,6 +82,7 @@ class RecordSearch extends Record
             'category_id' => $this->category_id,
             'user_id' => $this->user_id,
             'status' => $this->status,
+            'position' => $this->position,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

@@ -28,7 +28,7 @@ class BlogController extends Controller
     {
         $model = Record::find()
             ->select(['id','category_id','title','slug','preview','content','status','created_at'])
-            ->where(['slug'=>$slug])
+            ->andWhere(['slug'=>$slug,'status'=>10])
             ->one();
 
         if ($model !== null) {

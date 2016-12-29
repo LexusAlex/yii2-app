@@ -15,6 +15,8 @@ class m161208_185520_create_table_record_category_tag_tag_article extends Migrat
             'slug' => $this->string()->notNull()->unique(),
             'preview' => 'MEDIUMTEXT NOT NULL',
             'content' => 'MEDIUMTEXT NOT NULL',
+            'position' => $this->integer()->notNull(),
+            'description' => $this->string()->notNull()->defaultValue(''), // человеко понятное описание для сео
             'status' => $this->smallInteger()->notNull()->defaultValue(0),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull()
@@ -100,13 +102,14 @@ class m161208_185520_create_table_record_category_tag_tag_article extends Migrat
             'CASCADE', //action DELETE
             'CASCADE' //action UPDATE
         );
-
+        // базовые категории
         $this->batchInsert(
             'category',
             ['title'],
             [
                 ['Программирование'],
-                ['Тестирование'],
+                ['Администрирование'],
+                ['Саморазвитие'],
             ]
         );
     }

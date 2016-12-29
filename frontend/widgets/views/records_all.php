@@ -12,6 +12,8 @@
             'tag' => 'span',
             'class' => 'my-summary'
         ],
-        //'emptyText' => 'Список пуст',
+        'emptyText' => '<div class="alert">
+                        <div class="alert__header">Список пуст</div>
+                       </div>',
     ]);
 ?>

@@ -10,6 +10,7 @@ use Yii;
 use yii\db\Expression;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii2tech\ar\position\PositionBehavior;
 
 /**
  * This is the model class for table "record".
@@ -22,6 +23,8 @@ use yii\helpers\Html;
  * @property string $preview
  * @property string $content
  * @property integer $status
+ * @property integer $position
+ * @property string $description
  * @property integer $created_at
  * @property integer $updated_at
  *
@@ -68,6 +71,10 @@ class Record extends \yii\db\ActiveRecord
                 'class' => SluggableBehavior::className(),
                 'attribute' => 'title',
             ],
+            'positionBehavior' => [
+                'class' => PositionBehavior::className(),
+                'positionAttribute' => 'position',
+            ],
         ];
     }
 
@@ -77,11 +84,11 @@ class Record extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'title', 'slug', 'preview', 'content'], 'required'],
-            [['category_id', 'user_id', 'status'], 'integer'],
+            [['category_id', 'title','description', 'slug', 'preview', 'content'], 'required'],
+            [['category_id', 'user_id', 'position' ,'status'], 'integer'],
             [['preview', 'content'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['title', 'slug'], 'string', 'max' => 255],
+            [['title', 'slug','description'], 'string', 'max' => 255],
             [['slug'], 'unique'],
             [['tagsArray'], 'safe'],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
@@ -105,6 +112,8 @@ class Record extends \yii\db\ActiveRecord
             'preview' => Yii::t('app', 'Preview'),
             'content' => Yii::t('app', 'Content'),
             'status' => Yii::t('app', 'Status'),
+            'position' => Yii::t('app', 'Position'),
+            'description' => Yii::t('app', 'Description'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
             'tagsArray' => Yii::t('app', 'Tags'),
