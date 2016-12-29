@@ -37,7 +37,7 @@ class RecordController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index','view','create','update','delete','upload-image','delete-image','load-images'],
+                        'actions' => ['index','view','create','update','delete','upload-image','delete-image','load-images','first','last','prev','next'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -201,5 +201,49 @@ class RecordController extends Controller
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $response = Image::delete($_POST['src']);
         return $response;
+    }
+
+    /**
+     * @param $id
+     * @return \yii\web\Response
+     */
+    public function actionFirst($id){
+        $model = $this->findModel($id);
+        $model->moveFirst();
+        Yii::$app->session->setFlash('success', Yii::t('app', '{model} id №{numberFrom} was successfully moved to first position - {position}',['model' => 'record','numberFrom'=>$id,'position'=>$model->position]));
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * @param $id
+     * @return \yii\web\Response
+     */
+    public function actionLast($id){
+        $model = $this->findModel($id);
+        $model->moveLast();
+        Yii::$app->session->setFlash('success', Yii::t('app', '{model} id №{numberFrom} was successfully moved to last position - {position}',['model' => 'record','numberFrom'=>$id,'position'=>$model->position]));
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * @param $id
+     * @return \yii\web\Response
+     */
+    public function actionPrev($id){
+        $model = $this->findModel($id);
+        $model->movePrev();
+        Yii::$app->session->setFlash('success', Yii::t('app', '{model} id №{numberFrom} was successfully moved to prev position - {position}',['model' => 'record','numberFrom'=>$id,'position'=>$model->position]));
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * @param $id
+     * @return \yii\web\Response
+     */
+    public function actionNext($id){
+        $model = $this->findModel($id);
+        $model->moveNext();
+        Yii::$app->session->setFlash('success', Yii::t('app', '{model} id №{numberFrom} was successfully moved to next position - {position}',['model' => 'record','numberFrom'=>$id,'position'=>$model->position]));
+        return $this->redirect(['index']);
     }
 }

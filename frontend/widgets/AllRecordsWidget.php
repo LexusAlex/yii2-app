@@ -25,10 +25,10 @@ class AllRecordsWidget extends Widget  {
     public function run()
     {
         $records = Record::find()
-            ->select(['id','category_id','title','slug','preview','status','created_at'])
+            ->select(['id','category_id','title','slug','position','preview','status','created_at'])
             ->andWhere(['status'=>10])
             ->with(['category','tagArticles'])
-            ->orderBy('created_at DESC');
+            ->orderBy('position DESC, created_at DESC');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $records,

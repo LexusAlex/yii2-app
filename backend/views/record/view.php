@@ -52,7 +52,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'tagsArray',
                 'value'=>implode(', ', \yii\helpers\ArrayHelper::map($model->tagArticles, 'id', 'name')),
             ],
-            'status',
+            [
+                'attribute' => 'status',
+                'value'=> $model->status
+            ],
             [
                 'attribute' => 'created_at',
                 'format' => ['datetime', 'php:d F Y G:i:s'],

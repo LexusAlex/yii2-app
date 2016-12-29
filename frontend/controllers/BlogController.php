@@ -27,7 +27,7 @@ class BlogController extends Controller
     public function actionView($slug)
     {
         $model = Record::find()
-            ->select(['id','category_id','title','slug','preview','content','status','created_at'])
+            ->select(['id','category_id','title','slug','description','preview','content','status','created_at'])
             ->andWhere(['slug'=>$slug,'status'=>10])
             ->one();
 
@@ -50,7 +50,7 @@ class BlogController extends Controller
             ->select(['id','category_id','title','slug','preview','content','status','created_at'])
             ->andWhere(['category_id'=>$id ,'status'=>10])
             ->with(['category','tagArticles'])
-            ->orderBy('created_at DESC');
+            ->orderBy('position DESC');
 
         if ($records !== null) {
             $dataProvider = new ActiveDataProvider([
@@ -96,7 +96,7 @@ class BlogController extends Controller
 
         if ($tag !== null) {
             $dataProvider = new ActiveDataProvider([
-                'query' => $tag->getTagArticles()->with(['tagArticles'])->orderBy('created_at DESC'),
+                'query' => $tag->getTagArticles()->with(['tagArticles'])->andWhere(['status'=>10])->orderBy('position DESC'),
                 'pagination' => [
                     'pageSize' => 5,
                     'pageSizeParam' => false,

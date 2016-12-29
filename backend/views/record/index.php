@@ -121,6 +121,51 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
+                'header'=> Yii::t('app', 'Position'),
+                'template' => '{first} {prev} {next} {last}',
+                'buttons' => [
+                    'first' => function ($url,$model,$key) {
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-fast-backward"></span>',
+                            $url,[
+                            'title' => Yii::t('app', 'First'),
+                            'aria-label' => Yii::t('app', 'First'),
+                            'data-pjax' => '0',
+                            ]);
+                    },
+                    'prev' => function ($url,$model,$key) {
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-step-backward"></span>',
+                            $url,[
+                            'title' => Yii::t('app', 'Prev'),
+                            'aria-label' => Yii::t('app', 'Prev'),
+                            'data-pjax' => '0',
+                        ]);
+                    },
+                    'next' => function ($url,$model,$key) {
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-step-forward"></span>',
+                            $url,[
+                            'title' => Yii::t('app', 'Next'),
+                            'aria-label' => Yii::t('app', 'Next'),
+                            'data-pjax' => '0',
+                        ]);
+                    },
+
+                    'last' => function ($url,$model,$key) {
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-fast-forward"></span>',
+                            $url,[
+                            'title' => Yii::t('app', 'Last'),
+                            'aria-label' => Yii::t('app', 'Last'),
+                            'data-pjax' => '0',
+                        ]);
+                    },
+
+                ],
+            ],
+            [
+                'class' => 'yii\grid\ActionColumn',
                 'header'=> Yii::t('app', 'Action'),
                 'template' => '{view} {update} {delete}',
             ],
