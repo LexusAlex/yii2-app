@@ -57,7 +57,7 @@ class RecordSearch extends Record
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [ // постраничная разбивка
-                'pageSize' => 10,
+                'pageSize' => 20,
             ],
         ]);
 

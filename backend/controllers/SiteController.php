@@ -28,7 +28,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout','upload-image'],
+                        'actions' => ['logout','upload-image','sitemap'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -71,6 +71,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Login'));
             return $this->goBack();
         } else {
             return $this->render('login', [
@@ -87,7 +88,7 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
+        Yii::$app->session->setFlash('success', Yii::t('app', 'Logout'));
         return $this->goHome();
     }
 
@@ -105,5 +106,10 @@ class SiteController extends Controller
         }
 
         return $this->render('upload-image', ['model' => $model]);
+    }
+
+    public function actionSitemap()
+    {
+        return $this->render('sitemap');
     }
 }

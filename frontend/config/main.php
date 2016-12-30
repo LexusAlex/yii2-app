@@ -64,6 +64,12 @@ return [
                 ],*/
 
                 'about' => 'front/about',
+                [
+                    'pattern' => 'sitemap',
+                    'route' => 'front/sitemap',
+                    'verb' => 'POST',
+                    //'suffix' => '.xml',
+                ],
 
 
             ],

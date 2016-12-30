@@ -44,6 +44,7 @@ return [
     'Last'=> 'В конец',
     'Prev'=> 'Назад',
     'Next'=> 'Вперед',
+    'Update Sitemap'=> 'Обновить Sitemap',
     // category
     'Categories' => 'Категории',
     'Create Category' => 'Создать категорию',
