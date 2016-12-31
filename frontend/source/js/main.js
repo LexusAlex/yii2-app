@@ -1,4 +1,1 @@
-
-/*//= file1.js*/
-/*//= file2.js*/
-
+//= modules/highlight.js

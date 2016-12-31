@@ -76,9 +76,10 @@ return [
         ],
 
         'assetManager' => [
-            'linkAssets' => true,
+            'linkAssets' => true, // разрешаем создавать символические ссылки на ресурсы, и ресурсы всегда будут свежими
+            //'appendTimestamp' => true,
             'bundles' => [
-                'nezhelskoy\highlight\HighlightAsset' => [
+                /*'nezhelskoy\highlight\HighlightAsset' => [
                     'selector' => 'pre',
                     'options' => [
                         'tabReplace'=> ' ',
@@ -86,7 +87,7 @@ return [
                         'useBR' => false,
                     ],
                     'css' => ['dist/styles/github.css'],
-                ],
+                ],*/
                 //'yii\bootstrap\BootstrapAsset' =>
             ],
         ],

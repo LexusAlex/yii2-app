@@ -13,13 +13,14 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     //public $sourcePath = '@frontend/web';
     public $css = [
-        'css/style.css',
+        'css/style.min.css',
     ];
     public $js = [
-        'js/main.js'
+        'js/main.min.js'
     ];
     public $depends = [
-        'frontend\assets\NormalizeAsset',
+        'frontend\assets\HighlightAsset',
+        //'frontend\assets\NormalizeAsset',
         //'yii\web\YiiAsset',
         //'yii\bootstrap\BootstrapAsset',
     ];

@@ -60,8 +60,8 @@ gulp.task('css', function () {
             }
         }))
         .pipe(prefixer()) // добавляем префиксы
-        //.pipe(cssmin()) // сжимаем когда на прод
-        // .pipe(rename("style.min.css")) // переименовываем когда на прод
+        .pipe(cssmin()) // сжимаем когда на прод
+        .pipe(rename("style.min.css")) // переименовываем когда на прод
         .pipe(gulp.dest(path.web.styles)) // и пишем в public
         .pipe(reload({stream: true})); // перезагрузим сервер
 });
@@ -76,8 +76,8 @@ gulp.task('js', function () {
                 message: err.message
             }
         }))
-        //.pipe(uglify()) //Сожмем наш js
-        //.pipe(rename("main.min.js")) //Перименуем
+        .pipe(uglify()) //Сожмем наш js
+        .pipe(rename("main.min.js")) //Перименуем
         .pipe(gulp.dest(path.web.js)) //Выплюнем готовый файл
         .pipe(reload({stream: true})); //И перезагрузим сервер
 });
