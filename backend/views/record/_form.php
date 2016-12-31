@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
     )->hint(Yii::t('app', 'Select a category')); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true])->hint(Yii::t('app', 'Title and Slug')) ?>
-    <?= $form->field($model, 'description')->textInput(['maxlength' => true])->hint(Yii::t('app', 'Description')) ?>
+    <?= $form->field($model, 'description')->textInput(['maxlength' => true])->hint(Yii::t('app', 'Description').' '.Yii::t('app', 'For meta tag description')) ?>
     <label><?php echo Yii::t('app', 'Preview')?></label>
     <?php echo froala\froalaeditor\FroalaEditorWidget::widget([
         'model' => $model,
@@ -38,6 +38,20 @@ use yii\widgets\ActiveForm;
             'height'=> 300,
             'imageDefaultWidth'=>0,
             'imageOutputSize'=> true,
+            'linkAlwaysBlank'=> true,// всегда открываем в новой вкладке
+            'linkAlwaysNoFollow'=>false,
+            //'linkMultipleStyles'=> false,
+            //'linkStyles'=>[],
+            'linkEditButtons'=>['linkOpen', 'linkEdit', 'linkRemove'],
+            'linkText'=> true,
+            'linkList'=>[
+                [
+                'text'=> 'sporthock.ru',
+                'href'=> Yii::$app->params['path.frontend'],
+                'target'=> '_blank',
+                ]
+            ],
+            //'htmlAllowedAttrs'=> [],
             //'useClasses'=> false
             //'disableRightClick' => true
             //'width'=> 800,
@@ -68,7 +82,21 @@ use yii\widgets\ActiveForm;
             'imageManagerDeleteMethod'=> 'POST',
             'height'=> 300,
             'imageDefaultWidth'=>0,
-            'imageOutputSize'=> true
+            'imageOutputSize'=> true,
+            'linkAlwaysBlank'=> true,// всегда открываем в новой вкладке
+            'linkAlwaysNoFollow'=>false,
+            //'linkMultipleStyles'=> false,
+            //'linkStyles'=>[],
+            'linkEditButtons'=>['linkOpen', 'linkEdit', 'linkRemove'],
+            'linkText'=> true,
+            'linkList'=>[
+                [
+                    'text'=> 'sporthock.ru',
+                    'href'=> Yii::$app->params['path.frontend'],
+                    'target'=> '_blank',
+                ]
+            ],
+            //'htmlAllowedAttrs'=> [],
             //'width'=> 800,
             //'codeMirror'=> true,
         ]

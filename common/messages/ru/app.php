@@ -45,6 +45,7 @@ return [
     'Prev'=> 'Назад',
     'Next'=> 'Вперед',
     'Update Sitemap'=> 'Обновить Sitemap',
+    'For meta tag description'=>'для мета тега description',
     // category
     'Categories' => 'Категории',
     'Create Category' => 'Создать категорию',
