@@ -32,6 +32,7 @@ return [
     'Select or Update tags'=> 'Выберете или обновите теги',
     'Title and Slug'=> 'Заголовок и slug',
     'Time of servers' => 'Время сервера',
+    'Version'=> 'Версия',
     'Category not found in table Category'=> 'Категория не найдена в таблице Category',
     '{model} was successfully added' => '{model} была успешно добавлена',
     '{model} was successfully updated' => '{model} была успешно обновлена',
