@@ -1,2 +1,4 @@
 User-agent: *
-Disallow:
+Allow: /
+Host: http://sporthock.ru
+Sitemap: http://sporthock.ru/sitemap.xml

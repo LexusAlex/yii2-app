@@ -1,0 +1,75 @@
+<?php
+
+
+// тесты запускать из корня
+class My {
+    public $test = 1;
+    public static $st = 'static';
+    public function t($a, $b){
+        return $a + $b;
+    }
+}
+class Test extends \PHPUnit_Framework_TestCase
+{
+    public function testCase()
+    {
+        $v  = new \backend\modules\main\models\LoginForm();
+        $v->username = 'alex';
+        $v->password = '112233';
+        var_dump($v->errors);
+        var_dump($v->login());
+
+        $this->assertTrue(true,'its true');
+        $this->assertFalse(false,'its false');
+
+        $this->assertEquals(2+2,4,'На равенство');
+        $this->assertEquals([1,2],[1,2],'На равенство');
+        $this->assertGreaterThan(20,23,'Второе значение больше первого');
+        $this->assertArrayHasKey('foo', array('foo' => 'baz'),'Наличие ключа в массиве');
+        $this->assertClassHasAttribute('test', 'My','Наличие свойства в классе');
+        $this->assertClassHasStaticAttribute('st', 'My','Наличие у класса статического свойства');
+        $this->assertContains(4, array(1, 2, 3, 4),'Имеется ли у элемента внутри другой элемент');
+        $this->assertContains('fg', 'tfg67','Имеется ли у элемента внутри другой элемент на строках');
+        $this->assertContains('foo', 'FooBar', '', true);// нестрогое сравнение
+        $this->assertContainsOnly('string', array('1', '2', '3'),'Контент только указанного типа');
+        $this->assertCount(1, array('foo'),'Сравнение на колличество');
+        $this->assertEmpty(array(),'Сравнение на пустоту');
+        $this->assertEmpty('','Сравнение на пустоту');
+        $this->assertEmpty(0,'Сравнение на пустоту');
+        $this->assertEmpty(null,'Сравнение на пустоту');
+        //$this->assertFileExists(,'Проверка на существование файла');
+        $this->assertGreaterThanOrEqual(2, 2, 'больше или равно');
+        $this->assertInternalType('string', 's','Сравнение на тип');
+        //assertJsonFileEqualsJsonFile()
+        $this->assertLessThan(3,1,'Меньше чем');
+        $this->assertLessThanOrEqual(2, 2, 'Меньше чем или эквивалентно');
+        $this->assertNull(null,'На нулевое значение');
+    }
+
+    /**
+     * @dataProvider eq
+     */
+    public function  testCase2($a, $b, $exp) {
+
+        $this->assertEquals($exp, $a + $b);
+    }
+
+    public function eq() {
+        return [
+            [1, 1, 2],
+            [count([3,4]), 2, 4],
+        ];
+    }
+
+    public function testStub() {
+        $calc = $this->getMockBuilder('My')->getMock();
+
+        $calc->expects($this->any())
+            ->method('t')
+            ->will($this->returnValue(200));
+
+        $this->assertEquals(200, $calc->t(100,100));
+
+    }
+
+}

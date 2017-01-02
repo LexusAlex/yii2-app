@@ -1,0 +1,50 @@
+Схема базы данных
+
+record - Записи - Статья,Пост,Коментарий по категории можно понять что за тип
+    id - Номер записи (pk)
+    category_id -> Category.id - Категория (int) not null I FK
+    user_id -> User.id - Имя пользователя кто создал запись (int) not null I FK
+    slug - Заголовок записи для url (str) not null
+    title - Заголовок (str) not null
+    preview - Превью в html(markdown) (mediumtext) not null
+    content - Контент в html(markdown) (mediumtext) not null
+    description - Описание для сео
+    position - Позиция статьи в общем списке
+    status - Статус записи (int) 10 - active 0(default) - inactive 20 - deleted not null
+    created_at - Время создания (int) not null
+    updated_at - Время обновления (int) not null
+
+category - Категории для записи
+    id - Номер категории (pk)
+    title - Названии категории (str)
+    parent_id - Номер родительской категории (int) -> Category.id I FK
+
+tag - Теги для записей
+    id - Номер тега (pk)
+    name - Название тега
+    description - Описание тега
+    parent_id ->tag.id Родительский тег Null
+    frequency - Колличество тегов
+    created_at Время создания (int) not null
+    updated_at Время обновления (int) not null
+
+tag_article - Связь тегов и статей
+    record_id - Номер статьи (int)
+    tag_id - Номер тега (int)
+
+user - Пользователи
+    id - Номер пользователя в системе (int)
+    username - Имя пользователя (str)
+    password_hash - Хеш пароля (str)
+    password_reset_token - Токен для сброса пароля (str)
+    email - email пользователя (str )
+    auth_key - ключ для cookie аутентификации (str)
+    status - статус пользователя
+    created_at - время создания (int)
+    updated_at - время обновления (int)
+
+----------
+связи
+record запись
+tag тег
+tag_article связь тегов и статей

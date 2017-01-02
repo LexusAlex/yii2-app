@@ -10,6 +10,7 @@ return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
+    'defaultRoute' => 'record',
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
@@ -45,6 +46,22 @@ return [
             ],
         ],
         */
+        'urlManagerFrontend' => [
+            'class' => 'yii\web\UrlManager',
+            'baseUrl' =>  $params['path.frontend'],
+            'enablePrettyUrl' => true,
+            //'enableStrictParsing' => true,
+            'showScriptName' => false,
+            'rules' => [
+
+            ],
+        ],
+        'assetManager' => [
+            //'linkAssets' => true,
+            'bundles' => [
+                //'yii\bootstrap\BootstrapAsset' =>
+            ],
+        ],
     ],
     'params' => $params,
 ];

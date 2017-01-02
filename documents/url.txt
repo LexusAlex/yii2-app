@@ -1,0 +1,50 @@
+\yii\helpers\Url::base(true), // http://yii2.loc
+\yii\helpers\Url::base('https'), // https://yii2.loc
+\yii\helpers\Url::base(false), // ''
+\yii\helpers\Url::home(false), // '/'
+\yii\helpers\Url::home(true), // 'http://yii2.loc/'
+\yii\helpers\Url::home('https'), // 'https://yii2.loc/'
+\yii\helpers\Url::to(), // текущая ссылка без хоста /front/index?page=2
+\yii\helpers\Url::to(''), // текущая ссылка без хоста /front/index?page=2
+\yii\helpers\Url::to(['front/index']), // /front/index
+\yii\helpers\Url::to(['front/index','src1' => 'ref1','src2' => 'ref2', '#' => 'name']), // /front/index?src1=ref1&src2=ref2#name
+\yii\helpers\Url::to(['@backend']), // путь до /var/www/yii2.loc/backend
+\yii\helpers\Url::to(['@common']), // путь до /var/www/yii2.loc/common
+\yii\helpers\Url::to(['@frontend/web/uploads']), // /var/www/yii2.loc/frontend/web/uploads
+\yii\helpers\Url::to(['@frontend/web/uploads/images/file.gif']) ,// /var/www/yii2.loc/frontend/web/uploads/images/file.gif
+\yii\helpers\Url::to(['web/uploads/images/file.gif'],true), // полный путь http://yii2.loc/web/uploads/images/file.gif
+\yii\helpers\Url::to(['web/uploads/images/file.gif'],'https') ,// полный путь https://yii2.loc/web/uploads/images/file.gif
+\yii\helpers\Url::remember('front','f'), // запомнить
+\yii\helpers\Url::previous(), // восстановить ссылку
+//$this->registerLinkTag(['rel' => 'canonical', 'href' => \yii\helpers\Url::canonical()]) каноническая ссылка
+Yii::$app->basePath, ///var/www/yii2.loc/frontend
+Yii::$app->homeUrl, // '/'
+Yii::$app->getUrlManager()->createUrl(''), // '/'
+Yii::$app->getUrlManager()->createUrl(['front/index']), // /front/index
+Yii::$app->getUrlManager()->createUrl(['front/index','src1' => 'ref1','src2' => 'ref2', '#' => 'name']), // /front/index?src1=ref1&src2=ref2#name
+Yii::$app->getUrlManager()->createAbsoluteUrl(''), // http://yii2.loc/
+Yii::$app->getUrlManager()->createAbsoluteUrl(['front/index']), // http://yii2.loc/front/index
+Yii::$app->getUrlManager()->createAbsoluteUrl(['front/index','src1' => 'ref1','src2' => 'ref2', '#' => 'name']) // http://yii2.loc/front/index?src1=ref1&src2=ref2#name
+
+'f' => 'front/index',
+'f/<id:\d+>/<id2:[a-zA-Z0-9_-]{3,16}>' => 'front/index', //[ 'id' => '2' 'id2' => 'ttt' ]
+[
+    'pattern' => 'f',
+    'route' => 'front',
+    'suffix' => '.json',
+],
+[
+    'pattern' => 'far/<slug:[a-z0-9-]+>', ///far/2-nobolsoj-zagolovok-super-puper-puper-super-zagolovok-bolsoj-zapisi
+    'route' => 'front/index',
+],
+'posts/<year:\d{4}>/<category>' => 'front/index',
+'post/<id:\d+>/<cat:\w+>' => 'post/view', //http://yii2.loc/post/100/sert
+[
+    'pattern' => 'posts/<page:\d+>/<tag>',
+    'route' => 'front/index',
+    'defaults' => ['page' => 1, 'tag' => ''], // по умолчанию
+],
+
+VarDumper::dump(Url::to(['post/view', 'id' => 100,'cat'=>'sert'],true));
+echo Html::a('link',['post/view', 'id' => 100]);
+var_dump(\Yii::$app->request->queryParams);

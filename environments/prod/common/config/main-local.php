@@ -7,6 +7,9 @@ return [
             'username' => 'root',
             'password' => 'root',
             'charset' => 'utf8',
+            'enableSchemaCache' => true,
+            'schemaCacheDuration' => 172800,// Продолжительность кеширования схемы.
+            'schemaCache' => 'cache',// Название компонента кеша, используемого для хранения информации о схеме
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',

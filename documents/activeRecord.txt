@@ -1,0 +1,61 @@
+/*$p = new Record();
+$p->category_id = 1;
+$p->title = '.,!@$%^&*()мой заголовок00';
+//$p->user_id = Yii::$app->user->id;
+$p->preview = 'превью';
+$p->content = 'контент';
+$p->save();*/
+
+/*$t = new Tag();
+$t->name = 'css'; //unique
+$t->description = 'css';
+$t->save();*/
+
+/*$c = new Category();
+$c->title = 'Jquery';
+$c->parent_id = 3;
+$c->save();*/
+
+/*$ta = new TagArticle();
+$ta->record_id = 1;
+$ta->tag_id = 3 ;
+$ta->save();*/
+
+//Record::findOne(1);
+//Record::findAll([1,3])
+//Record::find()->asArray()->all() в виде массива
+//Record::find()->count() всего записей
+//Record::updateAll(['preview'=>'Новое превью'],['=','id',6]) обновление записей
+//Tag::findOne(2)->delete();
+
+// hasOne (класс с которым связываемся,[id - класса с которым связываемся => 'user_id' - в текущей таблице])
+//Record::findOne(3)->user - Получим пользователя у текущей записи модель common\models\User
+//Record::findOne(3)->category - Получим категорию
+//Record::findOne(1)->getUser()->where(['id' => 3])->all() или так что возможностью уточнить запрос
+
+// hasMany
+//User::findOne(2)->records - Получаем массив обьектов record где пользователем является текущий пользователь
+//User::findOne(2)->getRecords()->where(['id'=>5])->one() - Уточнение запроса
+
+// связь посредством промежуточной таблицы
+// hasMany(Tag::className(), ['id' => 'tag_id'])->viaTable('tag_article', ['record_id' => 'id']);
+//Record::findOne(3)->tagArticles
+//Tag::findOne(3)->tagArticles
+//Record::findOne(3)->getTagArticles()->all() // уточненния по выборке
+
+//TagArticle::findOne(['record_id'=>2,'tag_id'=>1]) - Просто указанная запись
+//TagArticle::findOne(['record_id'=>2,'tag_id'=>1])->tag - Модель Тег
+//TagArticle::findOne(['record_id'=>2,'tag_id'=>1])->record - Модель Запись
+
+/*$records = Record::find()->with('category')->limit(5)->all(); // жадная загрузка, делать так чтобы не нагружать базу
+foreach ($records as $record) {
+
+    $cat = $record->category;
+}*/
+
+// сохранение связанных данных
+//$record = Record::findOne(5); // запись 5
+//$tag = Tag::findOne(1); // тег 1
+
+//$tag->link('tagArticles',$record); // кладем в соответ табличку 5 1
+//$tag->unlink('tagArticles',$record,true); // удалить связь 5-1
