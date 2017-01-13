@@ -15,6 +15,10 @@ var browserSync = require("browser-sync").create();
 var reload = browserSync.reload;
 var notify = require('gulp-notify');
 var uglify = require('gulp-uglify');
+var browserify = require('browserify');
+var babelify   = require('babelify');
+var buffer = require('vinyl-buffer');
+var source = require('vinyl-source-stream');
 
 var path = {
     source: {
@@ -82,6 +86,18 @@ gulp.task('js', function () {
         .pipe(reload({stream: true})); //И перезагрузим сервер
 });
 
+//js browserify + babelify
+gulp.task('js:browserify', function () {
+    var browse =  browserify(path.source.js,{debug : false}).transform(babelify, { presets : [ 'es2015' ] }); // входная точка
+    browse.bundle()
+        .pipe(source(path.source.js))
+        .pipe(buffer())
+        .pipe(uglify()) //Сожмем наш js
+        .pipe(rename("main.min.js"))
+        .pipe(gulp.dest(path.web.js))
+        .pipe(reload({stream: true}));
+
+});
 //images
 gulp.task('images', function () {
     gulp.src(path.source.images)
@@ -100,7 +116,8 @@ gulp.task('images', function () {
 //наблюдение за измененными файлами если что-то изменилось то пересобираем
 gulp.task('watch', function () {
     gulp.watch(path.watch.styles, ['css']);
-    gulp.watch(path.watch.js, ['js']);
+    //gulp.watch(path.watch.js, ['js']);
+    //gulp.watch(path.watch.js, ['js:browserify']);
     gulp.watch(path.watch.images, ['images']);
     gulp.watch(path.watch.php,reload);
 });
