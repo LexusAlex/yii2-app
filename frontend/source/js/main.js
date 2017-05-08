@@ -1,1 +1,1 @@
-//= modules/highlight.js
+import './modules/highlight';

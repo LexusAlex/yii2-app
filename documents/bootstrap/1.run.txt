@@ -1,0 +1,8 @@
+1. yii\web\Application($config))->run() - запуск
+2. state = 2 EVENT_BEFORE_REQUEST
+3. state = 3 Подготовка к разбору запроса
+4. EVENT_BEFORE_ACTION
+5. Проверка $this->enableCsrfValidation
+6. Вызов кода экшена
+7. EVENT_AFTER_ACTION
+8. Следует ответ Экшена, ввиде Response, xml, json

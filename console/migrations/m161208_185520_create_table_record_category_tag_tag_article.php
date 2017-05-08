@@ -13,8 +13,8 @@ class m161208_185520_create_table_record_category_tag_tag_article extends Migrat
             'user_id'=> $this->integer()->notNull(), // user
             'title' => $this->string()->notNull(),
             'slug' => $this->string()->notNull()->unique(),
-            'preview' => 'MEDIUMTEXT NOT NULL',
-            'content' => 'MEDIUMTEXT NOT NULL',
+            'preview' => 'MEDIUMTEXT NOT NULL', // postgreSql 'TEXT NOT NULL'
+            'content' => 'MEDIUMTEXT NOT NULL', // postgreSql 'TEXT NOT NULL'
             'position' => $this->integer()->notNull(),
             'description' => $this->string()->notNull()->defaultValue(''), // человеко понятное описание для сео
             'status' => $this->smallInteger()->notNull()->defaultValue(0),
@@ -46,7 +46,7 @@ class m161208_185520_create_table_record_category_tag_tag_article extends Migrat
                 //'PRIMARY KEY(record_id, tag_id)'
             ]
         );
-        //pk tag_article
+        //pk tag_article postgreSql not empty 'pk'
         $this->addPrimaryKey('', '{{%tag_article}}', ['record_id', 'tag_id']);
         // index record.category_id
         $this->createIndex('I_category_id_record', '{{%record}}', 'category_id');

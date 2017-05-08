@@ -39,3 +39,4 @@ phpunit.phar
 
 # NPM modules
 /node_modules
+composer.lock

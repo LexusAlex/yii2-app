@@ -1,0 +1,69 @@
+Роль - сущность для привязки к пользователям
+Разрешение - можно привязывать к ролям
+Правило -
+Привязка - пользователю можно привязывать только роли их может быть несколько
+Наследование - связь ролей
+
+1. Определение ролей и разрешений
+2. Установка отношений между ролями и правами
+3. Определение правил
+4. Связывание правил с ролями и разрешениями
+5. Назначение ролей пользователям
+
+Роли как пример
+
+Admin - может все
+User - может смотреть
+Writer - может писать статьи и управлять своими статьями
+UserManager - может управлять пользоваетями
+WriterManager - может управлять статьями всех пользоваетлей
+
+Разрешения
+
+Создать запись
+Посмотреть запись
+Обновить запись
+Удалить запись
+
+
+Что можно делать в системе
+// создать роль и разрешение
+createRole($name)
+createPermission($name)
+
+// добавить удалить обновить
+add($object)
+remove($object)
+update($name, $object)
+
+// получить
+getRole($name)
+getRoles()
+getRolesByUser($userId)
+getChildRoles($roleName)
+getPermission($name)
+getPermissions()
+getPermissionsByRole($roleName)
+getPermissionsByUser($userId)
+getRule($name)
+getRules()
+
+canAddChild($parent, $child)
+addChild($parent, $child)
+removeChild($parent, $child)
+removeChildren($parent)
+hasChild($parent, $child)
+getChildren($name)
+
+assign($role, $userId)
+revoke($role, $userId)
+revokeAll($userId)
+getAssignment($roleName, $userId)
+getAssignments($userId)
+getUserIdsByRole($roleName)
+
+removeAll()
+removeAllPermissions()
+removeAllRoles()
+removeAllRules()
+removeAllAssignments()

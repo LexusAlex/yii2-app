@@ -38,7 +38,7 @@ use yii\widgets\ActiveForm;
             'height'=> 300,
             'imageDefaultWidth'=>0,
             'imageOutputSize'=> true,
-            'linkAlwaysBlank'=> true,// всегда открываем в новой вкладке
+            //'linkAlwaysBlank'=> true,// всегда открываем в новой вкладке
             'linkAlwaysNoFollow'=>false,
             //'linkMultipleStyles'=> false,
             //'linkStyles'=>[],
@@ -83,7 +83,7 @@ use yii\widgets\ActiveForm;
             'height'=> 300,
             'imageDefaultWidth'=>0,
             'imageOutputSize'=> true,
-            'linkAlwaysBlank'=> true,// всегда открываем в новой вкладке
+            //'linkAlwaysBlank'=> true,// всегда открываем в новой вкладке
             'linkAlwaysNoFollow'=>false,
             //'linkMultipleStyles'=> false,
             //'linkStyles'=>[],
