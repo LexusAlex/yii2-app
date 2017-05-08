@@ -1,0 +1,33 @@
+Предзагрузка - этот процесс происходит до запуска приложения index.php
+0. Свои действия, например установка констант
+1. Фаил composer autoload.php , он делает возможным подключать классы не входящие в ядро yii2 типа samdark/sitemap
+2. Фаил Yii.php => BaseYii автозагрузчик файлов yii автозагрузчик для файлов ядра (classes.php)
+3. new yii\di\Container() => Container => Component => Object => Configurable все это будет подключенно
+4. Object::construct() присваивает свойствам объекта переданную конфигурацию или вызывает метод init () если конфигурация пуста
+   Yii::createObject($config); создать обьект с переданной конфигурацией
+   Yii::configure($object, $config); сконфигурировать уже созаднный объект
+   Формат конфигурации для приложения
+   [
+       'class' => 'ClassName', имя класса создаваемого обьекта
+       'propertyName' => 'propertyValue', значения свойств создаваемго обьекта
+       'on eventName' => $eventHandler, какие обработчики событий должны быть прикреплены к событиям обьекта
+       'as behaviorName' => $behaviorConfig, какие поведения должны быть внедрены в обьект
+   ]
+5. new yii\web\Application($config) создание обьекта приложения web\Application => base\Application => Module => ServiceLocator => Container => Component => Object => Configurable
+6. state = 0, preInit() прединициализация важных свойств
+7. Yii::setAlias('@app') установка алиаса для корневой директории, компоненты ядра
+8. Регистируем обработчик ошибок
+9. Component::__construct($config) Наделяем обьект Application конфигурацией
+10. state = 1 ,base/Application::init() => web/Application->bootstrap()
+11. Фаил с расширениями yii vendor/yiisoft/extensions.php например yiisoft/yii2-bootstrap
+12. Какие компоненты предзагружать в первую очередь web/Application::bootstrap
+13. Будут созданы и загружены, модули, компоненты предзагрузки
+    ServiceLocator - удобная регистрация и вызов компонентов в приложении
+
+    $locator->set('db', [
+        'class' => 'yii\db\Connection',
+        'dsn' => 'mysql:host=localhost;dbname=demo',
+        'username' => 'root',
+        'password' => '',
+    ]);
+    Yii::$app->get('cache'); // получить компонент
